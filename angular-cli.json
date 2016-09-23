@@ -15,7 +15,9 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.css"
+        "css/fonts.css",
+        "css/forms.css",
+        "css/styles.css"
       ],
       "scripts": [],
       "environments": {

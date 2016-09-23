@@ -1,0 +1,111 @@
+
+.colors {
+    color: #e26fa0;
+    color: #888888; /* button color */
+    color: #dddddd; /* input border */
+    color: #337ab7; /* input focus, main button border */
+    color: #d50000; /* errors */
+}
+
+.form-control {
+    /*color: red;*/
+}
+
+.form-control,
+.form-control:focus {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.form-control {
+    border-bottom: 1px solid #dddddd;
+    font-size: 120%;
+}
+
+.form-control:focus {
+    border-bottom: 1px solid #337ab7;
+}
+
+.buttons-row {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    font-size: 90%;
+    padding: 10px 20px;
+    font-weight: bold;
+    color: #888888;
+    border-width: 2px;
+    border-color: transparent;
+}
+
+@media (max-width: 500px) {
+    .btn {
+        display: block;
+        width: 100%;
+    }
+}
+
+.btn:hover, .btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.btn.btn-main {
+    border-color: #337ab7;
+}
+
+.btn-seconday {
+
+}
+
+.alert {
+    border-radius: 0;
+}
+
+.alert-danger {
+    border-color: #d50000;
+    color: #d50000;
+}
+
+.alert-result {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.invalid-field {
+    border-color: #d50000;
+}
+
+.invalid-field-message {
+    color: #d50000;
+    font-size: 80%;
+    display: block;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.form-group {
+    margin-bottom: 0;
+    display: block;      
+}
+
+.form-group .form-control {
+    margin-bottom: 15px;
+}
+
+.file-form-control {
+    margin-top: 10px;   
+
+}
+
+.file-form-control label {
+    margin-left: 12px;
+    font-size: 120%;
+    color: #888888;
+}
+

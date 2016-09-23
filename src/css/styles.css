@@ -1,0 +1,160 @@
+
+html, body {
+    min-height: 100%;
+}
+
+body {
+    background-image: url(../assets/img/background-color-1.jpg);
+    background-image: url(../assets/img/background-color-2.jpg);
+    background-image: url(../assets/img/login-background-1.jpg);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+}
+
+.panel.panel-default {
+    border-radius: 0;
+    margin: 50px auto;
+    max-width: 1200px;
+    min-width: 340px;
+}
+
+@media (max-width: 500px) {
+    .panel.panel-default {
+        margin: 10px auto;
+    }
+}
+
+.panel.panel-default>div {
+    padding-left: 75px;
+    padding-right: 75px;
+}
+
+@media (max-width: 500px) {
+    .panel.panel-default>div {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+.panel-heading.panel-heading-custom {
+    padding-top: 50px;
+    background: #fff;
+    border-bottom: 0;
+}
+
+.panel-heading-title {
+    line-height: 110%;
+    font-size: 200%;
+    font-weight: bold;
+    font-family: 'PFHandbookPro-Regular', Segoe, "Segoe UI", Optima, Arial, sans-serif;
+}
+
+.panel-login-heading-subtitle {
+
+}
+
+.panel-footer {
+    border-top: 0;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+/* login */
+
+.panel.panel-default.panel-login {
+    max-width: 510px;
+}
+
+.btn-login {
+    width: 40%;
+}
+
+.btn-forgot-password {
+    width: 55%;
+}
+
+@media (max-width: 500px) {
+    .btn-forgot-password, .btn-login {
+        width: 100%;
+    }
+}
+
+/* create customer */
+
+/* form notes */
+
+.form-notes, .form-notes p {
+    font-size: 100%;
+    line-height: 120%;
+    word-spacing: 1px;
+}
+
+.form-notes h1 {
+    font-size: 150%;
+}
+
+/* patient information */
+
+.patient-information {
+    border: 1px solid #cccccc;
+    background: #ffffff;
+    margin: 20px 30px;
+    padding: 20px 45px;
+}
+
+.patient-information-name {
+    font-size: 200%;
+    margin-bottom: 0;
+}
+    
+.patient-information-identification {
+    font-size: 120%;
+    margin-top: 0;
+}
+
+.patient-information-section-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #337ab7;
+}
+
+.patient-information-section ul {
+    list-style: none;
+    padding-left: 0; 
+}
+
+.patient-information-section .glyphicon {
+    margin-right: 10px;
+}
+
+.patient-field {
+    font-weight: bold;
+}
+
+.patient-email {
+    color: #337ab7;
+    text-decoration: underline;
+
+}
+
+@media (max-width: 500px) {
+    .patient-information {
+        border: none;
+        background: #ffffff;
+        margin: 0;
+        padding: 5px;
+    }
+    .patient-information-name {
+        font-size: 150%;
+    }
+    .patient-information-identification {
+        font-size: 100%;
+    }    
+    .patient-information-section-title {
+        font-size: 90%;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+}
