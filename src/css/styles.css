@@ -16,7 +16,7 @@ body {
     border-radius: 0;
     margin: 50px auto;
     max-width: 1200px;
-    min-width: 340px;
+    min-width: 300px;
 }
 
 @media (max-width: 500px) {
@@ -25,13 +25,17 @@ body {
     }
 }
 
-.panel.panel-default>div {
+.panel.panel-default .panel-heading,
+.panel.panel-default .panel-body,
+.panel.panel-default .panel-footer {
     padding-left: 75px;
     padding-right: 75px;
 }
 
 @media (max-width: 500px) {
-    .panel.panel-default>div {
+    .panel.panel-default .panel-heading,
+    .panel.panel-default .panel-body,
+    .panel.panel-default .panel-footer {
         padding-left: 40px;
         padding-right: 40px;
     }
