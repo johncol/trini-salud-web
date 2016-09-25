@@ -109,3 +109,14 @@
     color: #888888;
 }
 
+.input-container-with-glyphicon {
+    position: relative;
+}
+
+.input-container-with-glyphicon .glyphicon {
+    position: absolute;
+    top: 8px;
+    right: 25px;
+    cursor: pointer;
+}
+

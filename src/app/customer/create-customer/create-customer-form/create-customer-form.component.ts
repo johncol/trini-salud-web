@@ -4,4 +4,6 @@ import { Component } from '@angular/core';
     selector: 'ts-create-customer-form',
     templateUrl: 'create-customer-form.component.html'
 })
-export class CreateCustomerForm { }
+export class CreateCustomerForm {
+    showPass: boolean = false;
+}
