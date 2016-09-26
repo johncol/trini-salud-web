@@ -6,6 +6,9 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ShowPasswordGlyphiconComponent } from './show-password-glyphicon/show-password-glyphicon.component';
 
+import { SessionService } from './session/session.service';
+import { UrlService } from './url/url.service';
+
 @NgModule({
   declarations: [
     AlertComponent,
@@ -16,7 +19,10 @@ import { ShowPasswordGlyphiconComponent } from './show-password-glyphicon/show-p
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    SessionService,
+    UrlService
+  ],
   exports: [
     AlertComponent,
     HeaderComponent,

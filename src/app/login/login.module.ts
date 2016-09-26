@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 import { SharedModule } from './../shared/shared.module';
+import { BackendModule } from './../backend/backend.module';
 
 import { LoginComponent } from './login.component';
 import { LoginFormComponent } from './login-form/login-form.component';
@@ -20,8 +20,8 @@ import { LoginService } from './login-form/login.service';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    HttpModule,
-    SharedModule
+    SharedModule,
+    BackendModule
   ],
   providers: [
     LoginService

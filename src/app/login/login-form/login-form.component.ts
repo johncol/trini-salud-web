@@ -29,7 +29,10 @@ export class LoginFormComponent implements OnInit {
     onSubmit(): void {
         if (this.loginForm.valid) {
             this.loginService.login(this.loginForm.value)
-                .subscribe(authenticated => this.handleLoginResponse(authenticated));
+                .subscribe(
+                    authenticated => this.handleLoginResponse(authenticated),
+                    error => this.handleErrorResponse(error)
+                );
         } else {
             this.onResult.emit(LoginStatus.FORM_ERRORS);
         }
@@ -42,5 +45,10 @@ export class LoginFormComponent implements OnInit {
         } else {
             this.onResult.emit(LoginStatus.NOT_AUTHENTICATED);
         }
+    }
+
+    private handleErrorResponse(error: any): void {
+        console.error('Fatal authentication error: ', error);
+        this.onResult.emit(LoginStatus.SERVER_ERROR);
     }
 }

@@ -4,7 +4,8 @@ import { LoginStatus } from './login-form/login-status.enum';
 
 const MESSAGES = {
     emptyFields: 'Debes ingresar tu usuario y contraseña',
-    failedAuth: 'Usuario o contraseña incorrecta'
+    failedAuth: 'Usuario o contraseña incorrecta',
+    serverError: 'Sentimos las molestias, ha ocurrido un error, inténtalo de nuevo mas tarde'
 };
 
 @Component({
@@ -18,6 +19,9 @@ export class LoginComponent {
         switch(loginStatus) {
             case LoginStatus.FORM_ERRORS:
                 this.errorMessage = MESSAGES.emptyFields;
+                break;
+            case LoginStatus.SERVER_ERROR:
+                this.errorMessage = MESSAGES.serverError;
                 break;
             case LoginStatus.NOT_AUTHENTICATED:
                 this.errorMessage = MESSAGES.failedAuth;
