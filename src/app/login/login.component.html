@@ -4,7 +4,12 @@
         subtitle="Inicia sesión para ver los certificados"
     ></ts-header>
     <div class="panel-body">
-        <ts-login-form></ts-login-form>
+        <ts-alert
+            *ngIf="errorMessage"
+            type="warning"
+            [message]="errorMessage"
+        ></ts-alert>
+        <ts-login-form (onResult)="manageResult($event)"></ts-login-form>
     </div>
     <ts-login-footer></ts-login-footer>
 </div>
