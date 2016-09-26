@@ -9,11 +9,25 @@ import { SearchCertificateComponent } from './search-certificate/search-certific
 import { SearchCertificateFormComponent } from './search-certificate/search-certificate-form/search-certificate-form.component';
 import { SearchCertificateNoteComponent } from './search-certificate/search-certificate-note/search-certificate-note.component';
 
+import { CertificateResultComponent } from './certificate-result/certificate-result.component';
+import { CertificateListComponent } from './certificate-result/certificate-list/certificate-list.component';
+import { PatientInformationComponent } from './certificate-result/patient-information/patient-information.component';
+
+import { UploadCertificateComponent } from './upload-certificate/upload-certificate.component'; 
+import { UploadCertificateFormComponent } from './upload-certificate/upload-certificate-form/upload-certificate-form.component'; 
+import { UploadCertificateNoteComponent } from './upload-certificate/upload-certificate-note/upload-certificate-note.component'; 
+
 @NgModule({
   declarations: [
     SearchCertificateComponent,
     SearchCertificateFormComponent,
-    SearchCertificateNoteComponent
+    SearchCertificateNoteComponent,
+    CertificateResultComponent,
+    CertificateListComponent,
+    PatientInformationComponent,
+    UploadCertificateComponent,
+    UploadCertificateFormComponent,
+    UploadCertificateNoteComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +37,9 @@ import { SearchCertificateNoteComponent } from './search-certificate/search-cert
   ],
   providers: [],
   exports: [
-    SearchCertificateComponent
+    SearchCertificateComponent,
+    CertificateResultComponent,
+    UploadCertificateComponent
   ]
 })
 export class CertificateModule { }

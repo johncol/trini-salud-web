@@ -1,0 +1,56 @@
+<section class="col-md-8">
+    <form>
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="identification" placeholder="Identificación">
+            </div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="name" placeholder="Nombre completo">
+            </div>
+            <div class="col-sm-6">
+                <input type="date" class="form-control" id="birthdate" placeholder="Fecha de nacimiento">
+            </div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="gender" placeholder="Sexo" list="genders">
+                <datalist id="genders">
+                    <option value="Mujer"></option>
+                    <option value="Hombre"></option>
+                </datalist>
+            </div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="eps" placeholder="EPS">
+            </div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="address" placeholder="Dirección">
+            </div>
+            <div class="col-sm-6">
+                <input type="email" class="form-control" id="email" placeholder="Email">
+            </div>
+            <div class="col-sm-6">
+                <input type="phone" class="form-control" id="phone" placeholder="Teléfono">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="customer" placeholder="Empleador del paciente">
+            </div>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="certificate-name" placeholder="Descripción del certificado">
+            </div>
+            <div class="col-sm-12">
+                <div class="file-form-control row">
+                    <div class="col-sm-2">
+                        <label for="exampleInputFile">Certificado</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="file" id="certificate-file">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-row">
+            <button type="submit" class="btn btn-default btn-main">Guardar</button>
+            <a class="btn btn-default" href="#">Cancelar</a>
+        </div>
+    </form>
+</section>

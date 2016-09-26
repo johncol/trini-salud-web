@@ -1,4 +1,8 @@
 <div class="panel-heading panel-heading-custom">
-    <h3 class="panel-heading-title">{{title}}</h3>
-    <h4 class="panel-heading-subtitle">{{subtitle}}</h4>
+    <h3 class="panel-heading-title">
+        {{title || 'No title'}}
+    </h3>
+    <h4 class="panel-heading-subtitle" *ngIf="subtitle">
+        {{subtitle}}
+    </h4>
 </div>
