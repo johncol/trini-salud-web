@@ -6,6 +6,9 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ShowPasswordGlyphiconComponent } from './show-password-glyphicon/show-password-glyphicon.component';
 
+import { AuthorizationService } from './authorization/authorization.service';
+import { RoleService } from './authorization/role.service';
+import { RoutingService } from './routing/routing.service';
 import { SessionService } from './session/session.service';
 import { UrlService } from './url/url.service';
 
@@ -20,8 +23,11 @@ import { UrlService } from './url/url.service';
     BrowserModule
   ],
   providers: [
+    AuthorizationService,
+    RoleService,
+    RoutingService,
     SessionService,
-    UrlService
+    UrlService,
   ],
   exports: [
     AlertComponent,

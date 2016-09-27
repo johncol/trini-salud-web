@@ -29,7 +29,7 @@ export class SessionService {
         return this.sessionData.username;
     }
 
-    rol(): string {
+    role(): string {
         return this.sessionData.rol;
     }
 

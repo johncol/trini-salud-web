@@ -9,7 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { CustomerModule } from './customer/customer.module';
 import { CertificateModule } from './certificate/certificate.module';
 
-import { routing } from './app.routing';
+import { routing } from './shared/routing/app.routing';
 
 import { AppComponent } from './app.component';
 

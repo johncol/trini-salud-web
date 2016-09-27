@@ -25,14 +25,28 @@ export class AuthenticationService {
 
     authenticate(request: AuthenticationRequest): Observable<AuthenticationResponse> {
         let url: string = this.urlService.build(this.url.authenticate);
-        // return Observable.create(observer => {
-        //         observer.next(new BackendResponse(200, 'OK', new AuthenticationResponse(request.username === 'admin', 'admin', 'KJH237485JKGJD')))
-        //     })
-        return this.http.post(url, request)
+        return this.dummyResponse(request)
+        // return this.http.post(url, request)
             .map(response => response.json())
             .do(response => console.log(`AuthenticationService - ${url} - response: `, response))
             .map((response: BackendResponse) => response.data)
             .do(response => this.sessionService.handle(request, response));
+    }
+
+    private dummyResponse(request: AuthenticationRequest): Observable<any> {
+        return Observable.create(observer => {
+            let authResponse: AuthenticationResponse;
+            if (request.username === 'admin') {
+                authResponse = new AuthenticationResponse(true, 'IPS_WORKER', 'KJH237485JKGJD');
+            } else if (request.username === 'noadmin') {
+                authResponse = new AuthenticationResponse(true, 'CUSTOMER', 'KJH237485JKGJD');
+            } else {
+                authResponse = new AuthenticationResponse(false);
+            }
+            observer.next({
+                json: () => new BackendResponse(200, 'OK', authResponse)
+            });
+        });
     }
 
 }

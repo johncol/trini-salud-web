@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { LoginStatus } from './login-form/login-status.enum';
+import { RoutingService } from './../shared/routing/routing.service';
 
 const MESSAGES = {
     emptyFields: 'Debes ingresar tu usuario y contraseña',
@@ -15,6 +16,10 @@ const MESSAGES = {
 export class LoginComponent {
     errorMessage: string;
 
+    constructor(
+        private routingService: RoutingService
+    ) { }
+
     manageResult(loginStatus: LoginStatus): void {
         switch(loginStatus) {
             case LoginStatus.FORM_ERRORS:
@@ -28,7 +33,7 @@ export class LoginComponent {
                 break;
             case LoginStatus.AUTHENTICATED:
                 this.errorMessage = null;
-                console.log('redirecting..');
+                this.routingService.afterLogin();
                 break;
             default:
                 throw new Error('Unexpected LoginStatus: ' + loginStatus);
