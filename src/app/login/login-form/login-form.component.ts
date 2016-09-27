@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -16,7 +16,8 @@ export class LoginFormComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private elementRef: ElementRef
     ) { }
 
     ngOnInit(): void {
@@ -34,8 +35,13 @@ export class LoginFormComponent implements OnInit {
                     error => this.handleErrorResponse(error)
                 );
         } else {
-            this.onResult.emit(LoginStatus.FORM_ERRORS);
+            this.handleFormErrors();
         }
+    }
+
+    focusPassword(event: any): void {
+        event.preventDefault();
+        this.focus('password');
     }
 
     private handleLoginResponse(authenticated: boolean): void {
@@ -44,11 +50,25 @@ export class LoginFormComponent implements OnInit {
             this.onResult.emit(LoginStatus.AUTHENTICATED);
         } else {
             this.onResult.emit(LoginStatus.NOT_AUTHENTICATED);
+            this.focus('username');
         }
     }
 
     private handleErrorResponse(error: any): void {
         console.error('Fatal authentication error: ', error);
         this.onResult.emit(LoginStatus.SERVER_ERROR);
+    }
+
+    private handleFormErrors(): void {
+        this.onResult.emit(LoginStatus.FORM_ERRORS);
+        if (this.loginForm.controls['username'].invalid) {
+            this.focus('username');
+        } else {
+            this.focus('password');
+        }
+    }
+
+    private focus(field: string): void {
+        this.elementRef.nativeElement.querySelector('#' + field).focus();
     }
 }

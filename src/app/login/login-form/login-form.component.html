@@ -1,6 +1,6 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" autocomplete="off">
     <div class="form-group">
-        <input type="text" class="form-control" formControlName="username" id="username" placeholder="Usuario">
+        <input type="text" class="form-control" formControlName="username" id="username" placeholder="Usuario" (keydown.enter)="focusPassword($event)">
     </div>
     <div class="form-group">
         <input type="password" class="form-control" formControlName="password" id="password" placeholder="Contraseña">
