@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { AlertComponent } from './alert/alert.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { NavigationComponent } from './navigation/navigation.component';
 import { ShowPasswordGlyphiconComponent } from './show-password-glyphicon/show-password-glyphicon.component';
 
 import { AuthorizationService } from './authorization/authorization.service';
@@ -17,10 +19,12 @@ import { UrlService } from './url/url.service';
     AlertComponent,
     HeaderComponent,
     FooterComponent,
-    ShowPasswordGlyphiconComponent
+    ShowPasswordGlyphiconComponent,
+    NavigationComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule
   ],
   providers: [
     AuthorizationService,
@@ -33,7 +37,8 @@ import { UrlService } from './url/url.service';
     AlertComponent,
     HeaderComponent,
     FooterComponent,
-    ShowPasswordGlyphiconComponent
+    ShowPasswordGlyphiconComponent,
+    NavigationComponent
   ]
 })
 export class SharedModule { }

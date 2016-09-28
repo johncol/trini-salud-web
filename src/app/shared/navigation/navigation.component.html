@@ -1,0 +1,9 @@
+<nav class="main-nav">
+    <ul class="navigation-list">
+        <li *ngFor="let item of items">
+            <a [routerLink]="item.href" attr.data-hover="{{item.label}}" routerLinkActive="current">
+                {{item.label}}
+            </a>
+        </li>
+    </ul>
+</nav>

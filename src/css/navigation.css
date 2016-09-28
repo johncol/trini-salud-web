@@ -1,0 +1,85 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
+
+.main-nav {
+    background: #333;
+    padding: 60px 50px 15px 0;
+    margin-top: -1px;
+    margin-left: -1px;
+    margin-right: -1px;
+}
+
+.navigation-list {
+    font-family: 'Raleway', Arial, sans-serif;
+    text-align: right;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding-left: 0;
+}
+
+.navigation-list * {
+    box-sizing: border-box;
+}
+
+.navigation-list li {
+    display: inline-block;
+    list-style: outside none none;
+    margin: 0 1.5em 15px;
+    padding: 0;
+}
+
+@media (max-width: 500px) {
+    .navigation-list li {
+        width: 100%;
+    }
+}
+
+.navigation-list a {
+    padding: 0.5em 0;
+    color: rgba(255, 255, 255, 0.5);
+    position: relative;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.navigation-list a:before,
+.navigation-list a:after {
+    position: absolute;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+}
+
+.navigation-list a:before {
+    bottom: 0;
+    height: 3px;
+    width: 0%;
+    content: "";
+    background-color: #337ab7;
+}
+
+@media (max-width: 500px) {
+    .navigation-list a:before {
+        bottom: 6px;
+    }
+}
+
+.navigation-list a:after {
+    left: 0;
+    top: 0;
+    padding: 0.5em 0;
+    content: attr(data-hover);
+    color: #ffffff;
+    white-space: nowrap;
+    max-width: 0%;
+    overflow: hidden;
+}
+
+.navigation-list a:hover:before,
+.navigation-list a.current:before {
+    opacity: 1;
+    width: 100%;
+}
+
+.navigation-list a:hover:after,
+.navigation-list a.current:after {
+    max-width: 100%;
+}

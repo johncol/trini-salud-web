@@ -10,11 +10,12 @@ body {
     background-repeat: no-repeat;
     background-position: 0 0;
     background-size: cover;
+    padding-top: 25px;
 }
 
 .panel.panel-default {
     border-radius: 0;
-    margin: 50px auto;
+    margin: 0 auto;
     max-width: 1200px;
     min-width: 300px;
 }
@@ -111,7 +112,7 @@ body {
     font-size: 200%;
     margin-bottom: 0;
 }
-    
+
 .patient-information-identification {
     font-size: 120%;
     margin-top: 0;
@@ -126,7 +127,7 @@ body {
 
 .patient-information-section ul {
     list-style: none;
-    padding-left: 0; 
+    padding-left: 0;
 }
 
 .patient-information-section .glyphicon {
@@ -140,7 +141,6 @@ body {
 .patient-email {
     color: #337ab7;
     text-decoration: underline;
-
 }
 
 @media (max-width: 500px) {
@@ -155,7 +155,7 @@ body {
     }
     .patient-information-identification {
         font-size: 100%;
-    }    
+    }
     .patient-information-section-title {
         font-size: 90%;
         text-transform: uppercase;

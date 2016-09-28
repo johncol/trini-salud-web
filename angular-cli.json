@@ -17,6 +17,7 @@
       "styles": [
         "css/fonts.css",
         "css/forms.css",
+        "css/navigation.css",
         "css/styles.css"
       ],
       "scripts": [],
