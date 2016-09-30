@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { NavigationItem } from './navigation.item';
+import { NavigationService } from './navigation.service';
 
 @Component({
     selector: 'ts-navigation',
@@ -10,14 +11,12 @@ export class NavigationComponent implements OnInit {
     items: NavigationItem[];
     visible: boolean = false;
 
+    constructor(
+        private navigationService: NavigationService
+    ) { }
+
     ngOnInit(): void {
-        this.items = [
-            new NavigationItem('Inicio', '/dashboard'),
-            new NavigationItem('Registrar cliente', '/customer/create'),
-            new NavigationItem('Cargar certificado', '/certificate/upload'),
-            new NavigationItem('Buscar certificado', '/certificate/search'),
-            new NavigationItem('Salir', '/logout')
-        ];
+        this.items = this.navigationService.getNavigationItems();
     }
 
     toggleMenu(): void {

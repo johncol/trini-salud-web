@@ -28,4 +28,12 @@ export class RoleService {
         }
         return false;
     }
+
+    getIpsWorker(): string {
+        return Role.IPS_WORKER;
+    }
+
+    getCustomer(): string {
+        return Role.CUSTOMER;
+    }
 }

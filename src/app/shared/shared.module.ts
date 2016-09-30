@@ -9,6 +9,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { ShowPasswordGlyphiconComponent } from './show-password-glyphicon/show-password-glyphicon.component';
 
 import { AuthorizationService } from './authorization/authorization.service';
+import { NavigationService } from './navigation/navigation.service';
 import { RoleService } from './authorization/role.service';
 import { RoutingService } from './routing/routing.service';
 import { SessionService } from './session/session.service';
@@ -28,6 +29,7 @@ import { UrlService } from './url/url.service';
   ],
   providers: [
     AuthorizationService,
+    NavigationService,
     RoleService,
     RoutingService,
     SessionService,
