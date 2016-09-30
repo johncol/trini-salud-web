@@ -17,6 +17,10 @@ export class RoutingService {
         this.router.navigate(['login']);
     }
 
+    toDashboard(): void {
+        this.router.navigate(['dashboard']);
+    }
+
     toCreateCustomer(): void {
         this.router.navigate(['customer', 'create']);
     }
@@ -40,8 +44,7 @@ export class RoutingService {
         } else if (this.roleService.isCustomer()) {
             this.toSearchCertificate();
         } else if (this.roleService.isIpsWorker()) {
-            // to dashboard
-            this.toCreateCustomer();
+            this.toDashboard();
         } else {
             throw new Error('RoutingService.afterLogin(): should not get here!');
         }

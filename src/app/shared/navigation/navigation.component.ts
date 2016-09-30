@@ -12,7 +12,7 @@ export class NavigationComponent implements OnInit {
 
     ngOnInit(): void {
         this.items = [
-            new NavigationItem('Inicio', '/home'),
+            new NavigationItem('Inicio', '/dashboard'),
             new NavigationItem('Registrar cliente', '/customer/create'),
             new NavigationItem('Cargar certificado', '/certificate/upload'),
             new NavigationItem('Buscar certificado', '/certificate/search'),
