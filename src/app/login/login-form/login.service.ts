@@ -16,11 +16,6 @@ export class LoginService {
         let request = new AuthenticationRequest(loginData.username, loginData.password);
         return this.authenticationService.authenticate(request)
             .map(response => response.authenticated);
-        // return Observable.create(observer => {
-        //     setTimeout(() => {
-        //         observer.next(loginData.username === 'admin');
-        //     }, 500);
-        // });
     }
 
 }

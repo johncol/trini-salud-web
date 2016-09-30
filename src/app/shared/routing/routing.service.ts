@@ -37,6 +37,10 @@ export class RoutingService {
         this.router.navigate(['certificate', certificateId]);
     }
 
+    toSuccessProcess(): void {
+        this.router.navigate(['sucess']);
+    }
+
     afterLogin(): void {
         if (!this.sessionService.sessionActive()) {
             console.warn('No destination after login if there is no session');

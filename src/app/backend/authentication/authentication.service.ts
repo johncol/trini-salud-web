@@ -35,6 +35,7 @@ export class AuthenticationService {
 
     private dummyResponse(request: AuthenticationRequest): Observable<any> {
         return Observable.create(observer => {
+            console.info('AuthenticationService.authenticate() dummy response being used');
             let authResponse: AuthenticationResponse;
             if (request.username === 'admin') {
                 authResponse = new AuthenticationResponse(true, 'IPS_WORKER', 'KJH237485JKGJD');

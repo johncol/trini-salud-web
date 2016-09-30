@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { SharedModule } from './../shared/shared.module';
@@ -8,6 +8,8 @@ import { SharedModule } from './../shared/shared.module';
 import { CreateCustomerComponent } from './create-customer/create-customer.component';
 import { CreateCustomerNoteComponent } from './create-customer/create-customer-note/create-customer-note.component';
 import { CreateCustomerForm } from './create-customer/create-customer-form/create-customer-form.component';
+
+import { CreateCustomerFormService } from './create-customer/create-customer-form/create-customer-form.service';
 
 @NgModule({
   declarations: [
@@ -17,11 +19,13 @@ import { CreateCustomerForm } from './create-customer/create-customer-form/creat
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+      CreateCustomerFormService
+  ],
   exports: [
     CreateCustomerComponent
   ]

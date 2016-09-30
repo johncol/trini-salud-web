@@ -4,7 +4,8 @@ import { HttpModule } from '@angular/http';
 
 import { SharedModule } from './../shared/shared.module';
 
-import { AuthenticationService } from './authentication/authentication.service'; 
+import { AuthenticationService } from './authentication/authentication.service';
+import { CustomerService } from './customer/customer.service';
 
 @NgModule({
   declarations: [],
@@ -14,7 +15,8 @@ import { AuthenticationService } from './authentication/authentication.service';
     SharedModule
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    CustomerService
   ],
   exports: []
 })

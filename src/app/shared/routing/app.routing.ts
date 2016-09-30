@@ -8,6 +8,7 @@ import { UploadCertificateComponent } from './../../certificate/upload-certifica
 import { SearchCertificateComponent } from './../../certificate/search-certificate/search-certificate.component';
 import { CertificateResultComponent } from './../../certificate/certificate-result/certificate-result.component';
 import { DashboardComponent } from './../../dashboard/dashboard.component';
+import { SuccessProcessComponent } from './../../shared/success-process/success-process.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
     { path: 'certificate/upload', component: UploadCertificateComponent },
     { path: 'certificate/search', component: SearchCertificateComponent },
     { path: 'certificate/:id', component: CertificateResultComponent },
+    { path: 'sucess', component: SuccessProcessComponent },
     { path: '', pathMatch: 'full', redirectTo: '/login' }
 ];
 

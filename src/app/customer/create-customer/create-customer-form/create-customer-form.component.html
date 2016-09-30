@@ -1,25 +1,30 @@
 <section class="col-md-8">
-    <form>
+    <ts-alert
+        *ngIf="state.displayMessage"
+        [type]="state.error ? 'danger' : 'success'"
+        [message]="state.message"
+    ></ts-alert>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate [class.highlight-errors]="state.highlightErrors">
         <div class="form-group row">
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="identification" placeholder="Identificacion">
+                <input type="text" class="form-control" id="identification" formControlName="identification" placeholder="Identificacion" (keydown.enter)="focus('name', $event)">
             </div>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="name" placeholder="Nombre">
+                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nombre" (keydown.enter)="focus('email', $event)">
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-6">
-                <input type="email" class="form-control" id="email" placeholder="Email">
+                <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email" (keydown.enter)="focus('phone', $event)">
             </div>
             <div class="col-sm-6">
-                <input type="phone" class="form-control" id="phone" placeholder="Teléfono">
+                <input type="phone" class="form-control" id="phone" formControlName="phone" placeholder="Teléfono" (keydown.enter)="focus('password', $event)">
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-6 input-container-with-glyphicon">
-                <input [type]="showPass ? 'text' : 'password'" class="form-control" id="password" placeholder="Contraseña">
-                <ts-show-password-glyphicon (show)="showPass = $event"></ts-show-password-glyphicon>
+                <input [type]="state.showPassword ? 'text' : 'password'" class="form-control" id="password" formControlName="password" placeholder="Contraseña">
+                <ts-show-password-glyphicon (show)="state.showPassword = $event"></ts-show-password-glyphicon>
             </div>
         </div>
         <div class="buttons-row">
