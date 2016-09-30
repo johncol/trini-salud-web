@@ -8,6 +8,7 @@ import { NavigationItem } from './navigation.item';
 })
 export class NavigationComponent implements OnInit {
     items: NavigationItem[];
+    visible: boolean = false;
 
     ngOnInit(): void {
         this.items = [
@@ -17,5 +18,9 @@ export class NavigationComponent implements OnInit {
             new NavigationItem('Buscar certificado', '/certificate/search'),
             new NavigationItem('Salir', '/logout')
         ];
+    }
+
+    toggleMenu(): void {
+        this.visible = !this.visible;
     }
 }

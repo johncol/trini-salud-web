@@ -6,6 +6,7 @@
     margin-top: -1px;
     margin-left: -1px;
     margin-right: -1px;
+    position: relative;
 }
 
 .navigation-list {
@@ -82,4 +83,36 @@
 .navigation-list a:hover:after,
 .navigation-list a.current:after {
     max-width: 100%;
+}
+
+.navigation-icon {
+    display: none;
+}
+
+@media (max-width: 500px) {
+
+    .main-nav {
+        padding-top: 50px;
+        padding-bottom: 0;
+    }
+
+    .navigation-icon {
+        background: transparent url('../assets/img/navigation-icon.png') no-repeat;
+        background-size: cover;
+        width: 30px;
+        height: 30px;
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        cursor: pointer;
+    }
+
+    .navigation-list {
+        display: none;
+    }
+
+    .navigation-list.visible {
+        display: block;
+    }
 }

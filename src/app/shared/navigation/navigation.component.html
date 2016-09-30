@@ -1,5 +1,6 @@
 <nav class="main-nav">
-    <ul class="navigation-list">
+    <span class="navigation-icon" (click)="toggleMenu()"></span>
+    <ul class="navigation-list" [class.visible]="visible">
         <li *ngFor="let item of items">
             <a [routerLink]="item.href" attr.data-hover="{{item.label}}" routerLinkActive="current">
                 {{item.label}}
