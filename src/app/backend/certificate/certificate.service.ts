@@ -33,7 +33,7 @@ export class CertificateService {
     }
 
     private uploadDummyResponse(request: UploadCertificateRequest): Observable<any> {
-        console.info('CustomerService.save() dummy response being used');
+        console.info('CertificateService.upload() dummy response being used');
         return Observable.create(observer => {
             let certificateResponse = new UploadCertificateResponse(
                 true,
