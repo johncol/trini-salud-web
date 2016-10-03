@@ -6,6 +6,7 @@ import { SharedModule } from './../shared/shared.module';
 
 import { AuthenticationService } from './authentication/authentication.service';
 import { CustomerService } from './customer/customer.service';
+import { CertificateService } from './certificate/certificate.service';
 
 @NgModule({
   declarations: [],
@@ -16,7 +17,8 @@ import { CustomerService } from './customer/customer.service';
   ],
   providers: [
     AuthenticationService,
-    CustomerService
+    CustomerService,
+    CertificateService
   ],
   exports: []
 })

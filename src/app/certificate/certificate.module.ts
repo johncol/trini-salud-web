@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { SharedModule } from './../shared/shared.module';
@@ -13,9 +13,10 @@ import { CertificateResultComponent } from './certificate-result/certificate-res
 import { CertificateListComponent } from './certificate-result/certificate-list/certificate-list.component';
 import { PatientInformationComponent } from './certificate-result/patient-information/patient-information.component';
 
-import { UploadCertificateComponent } from './upload-certificate/upload-certificate.component'; 
-import { UploadCertificateFormComponent } from './upload-certificate/upload-certificate-form/upload-certificate-form.component'; 
-import { UploadCertificateNoteComponent } from './upload-certificate/upload-certificate-note/upload-certificate-note.component'; 
+import { UploadCertificateComponent } from './upload-certificate/upload-certificate.component';
+import { UploadCertificateFormComponent } from './upload-certificate/upload-certificate-form/upload-certificate-form.component';
+import { UploadCertificateNoteComponent } from './upload-certificate/upload-certificate-note/upload-certificate-note.component';
+import { UploadCertificateFormService } from './upload-certificate/upload-certificate-form/upload-certificate-form.service';
 
 @NgModule({
   declarations: [
@@ -31,11 +32,13 @@ import { UploadCertificateNoteComponent } from './upload-certificate/upload-cert
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+      UploadCertificateFormService
+  ],
   exports: [
     SearchCertificateComponent,
     CertificateResultComponent,
