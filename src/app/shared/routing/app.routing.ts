@@ -17,7 +17,7 @@ const appRoutes: Routes = [
     { path: 'customer/create', component: CreateCustomerComponent },
     { path: 'certificate/upload', component: UploadCertificateComponent },
     { path: 'certificate/search', component: SearchCertificateComponent },
-    { path: 'certificate/:id', component: CertificateResultComponent },
+    { path: 'certificate', component: CertificateResultComponent },
     { path: 'sucess', component: SuccessProcessComponent },
     { path: '', pathMatch: 'full', redirectTo: '/login' }
 ];

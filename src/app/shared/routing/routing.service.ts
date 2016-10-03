@@ -33,8 +33,8 @@ export class RoutingService {
         this.router.navigate(['certificate', 'search']);
     }
 
-    toCertificate(certificateId: string): void {
-        this.router.navigate(['certificate', certificateId]);
+    toCertificate(): void {
+        this.router.navigate(['certificate']);
     }
 
     toSuccessProcess(): void {

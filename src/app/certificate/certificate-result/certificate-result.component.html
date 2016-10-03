@@ -5,8 +5,8 @@
     ></ts-header>
     <div class="panel-body">
         <div class="row">
-            <ts-patient-information></ts-patient-information>
-            <ts-certificate-list></ts-certificate-list>
+            <ts-patient-information [patient]="result.patient"></ts-patient-information>
+            <ts-certificate-list [certificates]="result.certificates"></ts-certificate-list>
         </div>
     </div>
     <ts-footer></ts-footer>

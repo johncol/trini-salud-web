@@ -1,16 +1,10 @@
 <aside class="col-md-4 form-notes">
     <h1>Certificados</h1>
     <ul>
-        <li>
-            <a href="#">
+        <li *ngFor="let certificate of certificates">
+            <a [href]="buildCertificateUrl(certificate.linkId)" target="_blank">
                 <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-                <span>Examen de trigliceridos</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-                <span>Examen de glucosa concentrada</span>
+                <span>{{certificate.name}}</span>
             </a>
         </li>
     </ul>

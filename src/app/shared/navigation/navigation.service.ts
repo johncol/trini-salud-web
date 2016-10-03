@@ -33,7 +33,8 @@ export class NavigationService {
 
     private initAllItems(): void {
         this.allItems = {
-            'dashboard': new NavigationItem('Inicio', '/dashboard'),
+            // 'dashboard': new NavigationItem('Inicio', '/dashboard'),
+            'dashboard': new NavigationItem('Inicio', '/certificate'),
             'create-customer': new NavigationItem('Registrar cliente', '/customer/create'),
             'upload-certificate': new NavigationItem('Cargar certificado', '/certificate/upload'),
             'search-certificate': new NavigationItem('Buscar certificado', '/certificate/search'),
