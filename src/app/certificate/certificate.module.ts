@@ -16,6 +16,9 @@ import { PatientInformationComponent } from './certificate-result/patient-inform
 import { UploadCertificateComponent } from './upload-certificate/upload-certificate.component';
 import { UploadCertificateFormComponent } from './upload-certificate/upload-certificate-form/upload-certificate-form.component';
 import { UploadCertificateNoteComponent } from './upload-certificate/upload-certificate-note/upload-certificate-note.component';
+
+import { CertificateResultService } from './certificate-result/certificate-result.service';
+import { CertificateResultGuard } from './certificate-result/certificate-result.guard';
 import { UploadCertificateFormService } from './upload-certificate/upload-certificate-form/upload-certificate-form.service';
 
 @NgModule({
@@ -37,7 +40,9 @@ import { UploadCertificateFormService } from './upload-certificate/upload-certif
     SharedModule
   ],
   providers: [
-      UploadCertificateFormService
+    UploadCertificateFormService,
+    CertificateResultService,
+    CertificateResultGuard
   ],
   exports: [
     SearchCertificateComponent,

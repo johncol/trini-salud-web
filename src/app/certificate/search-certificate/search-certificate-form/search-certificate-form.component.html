@@ -1,12 +1,17 @@
-<!--<section class="col-md-8">
-    <form>
+<section class="col-md-8">
+    <ts-alert
+        *ngIf="state.message"
+        [type]="state.error ? 'danger' : 'warning'"
+        [message]="state.message"
+    ></ts-alert>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate [class.highlight-errors]="state.highlightErrors">
         <div class="form-group row">
             <div class="col-sm-12">
-                <input type="text" class="form-control" id="identification" placeholder="Número de identificación">
+                <input type="text" class="form-control" id="identification" formControlName="identification" placeholder="Número de identificación">
             </div>
         </div>
         <div class="buttons-row">
             <button type="submit" class="btn btn-default btn-main">Buscar</button>
         </div>
     </form>
-</section>-->
+</section>

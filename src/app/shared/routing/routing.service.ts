@@ -38,7 +38,7 @@ export class RoutingService {
     }
 
     toSuccessProcess(): void {
-        this.router.navigate(['sucess']);
+        this.router.navigate(['success']);
     }
 
     afterLogin(): void {

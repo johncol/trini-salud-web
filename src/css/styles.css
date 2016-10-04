@@ -162,3 +162,7 @@ body {
         font-weight: bold;
     }
 }
+
+.certificate-list {
+    margin-bottom: 20px;
+}

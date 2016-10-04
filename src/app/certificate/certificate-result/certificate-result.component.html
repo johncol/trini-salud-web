@@ -5,8 +5,11 @@
     ></ts-header>
     <div class="panel-body">
         <div class="row">
-            <ts-patient-information [patient]="result.patient"></ts-patient-information>
-            <ts-certificate-list [certificates]="result.certificates"></ts-certificate-list>
+            <ts-patient-information [patient]="result?.patient"></ts-patient-information>
+            <ts-certificate-list [certificates]="result?.certificates"></ts-certificate-list>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-default btn-main btn-back" (click)="back()">Atras</button>
         </div>
     </div>
     <ts-footer></ts-footer>

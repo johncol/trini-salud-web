@@ -10,6 +10,8 @@ import { CertificateResultComponent } from './../../certificate/certificate-resu
 import { DashboardComponent } from './../../dashboard/dashboard.component';
 import { SuccessProcessComponent } from './../../shared/success-process/success-process.component';
 
+import { CertificateResultGuard } from './../../certificate/certificate-result/certificate-result.guard';
+
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent },
@@ -17,8 +19,8 @@ const appRoutes: Routes = [
     { path: 'customer/create', component: CreateCustomerComponent },
     { path: 'certificate/upload', component: UploadCertificateComponent },
     { path: 'certificate/search', component: SearchCertificateComponent },
-    { path: 'certificate', component: CertificateResultComponent },
-    { path: 'sucess', component: SuccessProcessComponent },
+    { path: 'certificate', component: CertificateResultComponent, canActivate: [CertificateResultGuard] },
+    { path: 'success', component: SuccessProcessComponent },
     { path: '', pathMatch: 'full', redirectTo: '/login' }
 ];
 
