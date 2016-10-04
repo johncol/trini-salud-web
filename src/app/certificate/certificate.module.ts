@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -37,6 +38,7 @@ import { UploadCertificateFormService } from './upload-certificate/upload-certif
     BrowserModule,
     ReactiveFormsModule,
     HttpModule,
+    RouterModule,
     SharedModule
   ],
   providers: [

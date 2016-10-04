@@ -5,7 +5,6 @@ import { Certificate } from './certificate-list/certificate';
 import { PatientInformation } from './patient-information/patient-information';
 
 import { CertificateResultService } from './certificate-result.service';
-import { RoutingService } from './../../shared/routing/routing.service';
 
 @Component({
     selector: 'ts-certificate-result',
@@ -15,15 +14,10 @@ export class CertificateResultComponent implements OnInit {
     result: CertificateResult;
 
     constructor(
-        private certificateResultService: CertificateResultService,
-        private routingService: RoutingService
+        private certificateResultService: CertificateResultService
     ) { }
 
     ngOnInit(): void {
         this.result = this.certificateResultService.get();
-    }
-
-    back(): void {
-        this.routingService.toSearchCertificate();
     }
 }

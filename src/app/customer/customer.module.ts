@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -21,6 +22,7 @@ import { CreateCustomerFormService } from './create-customer/create-customer-for
     BrowserModule,
     ReactiveFormsModule,
     HttpModule,
+    RouterModule,
     SharedModule
   ],
   providers: [
