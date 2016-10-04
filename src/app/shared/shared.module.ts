@@ -9,6 +9,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { ShowPasswordGlyphiconComponent } from './show-password-glyphicon/show-password-glyphicon.component';
 import { SuccessProcessComponent } from './success-process/success-process.component';
 
+import { AuthorizationGuard } from './authorization/authorization.guard';
 import { AuthorizationService } from './authorization/authorization.service';
 import { NavigationService } from './navigation/navigation.service';
 import { RoleService } from './authorization/role.service';
@@ -30,6 +31,7 @@ import { UrlService } from './url/url.service';
     RouterModule
   ],
   providers: [
+    AuthorizationGuard,
     AuthorizationService,
     NavigationService,
     RoleService,

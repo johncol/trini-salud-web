@@ -10,17 +10,18 @@ import { CertificateResultComponent } from './../../certificate/certificate-resu
 import { DashboardComponent } from './../../dashboard/dashboard.component';
 import { SuccessProcessComponent } from './../../shared/success-process/success-process.component';
 
+import { AuthorizationGuard } from './../authorization/authorization.guard';
 import { CertificateResultGuard } from './../../certificate/certificate-result/certificate-result.guard';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent },
-    { path: 'dashboard', component: DashboardComponent },
-    { path: 'customer/create', component: CreateCustomerComponent },
-    { path: 'certificate/upload', component: UploadCertificateComponent },
-    { path: 'certificate/search', component: SearchCertificateComponent },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthorizationGuard] },
+    { path: 'customer/create', component: CreateCustomerComponent, canActivate: [AuthorizationGuard] },
+    { path: 'certificate/upload', component: UploadCertificateComponent, canActivate: [AuthorizationGuard] },
+    { path: 'certificate/search', component: SearchCertificateComponent, canActivate: [AuthorizationGuard] },
     { path: 'certificate', component: CertificateResultComponent, canActivate: [CertificateResultGuard] },
-    { path: 'success', component: SuccessProcessComponent },
+    { path: 'success', component: SuccessProcessComponent, canActivate: [AuthorizationGuard] },
     { path: '', pathMatch: 'full', redirectTo: '/login' }
 ];
 

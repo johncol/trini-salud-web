@@ -5,10 +5,6 @@ import { RoleService } from './role.service';
 
 @Injectable()
 export class AuthorizationService {
-    private customerAllowedPaths: string[] = [
-        'certificate/search',
-        'certificate/:id'
-    ];
 
     constructor(
         private sessionService: SessionService,
@@ -16,7 +12,7 @@ export class AuthorizationService {
     ) { }
 
     canAccess(path: string): boolean {
-        if (path === 'login') {
+        if (path === '/' || path === '/login' || path === '/logout') {
             return true;
         } else if (!this.sessionService.sessionActive()) {
             return false;
@@ -29,12 +25,7 @@ export class AuthorizationService {
     }
 
     private canAccessCustomer(path: string): boolean {
-        if (path === 'certificate/upload') {
-            return false;
-        } else if (path === 'certificate/search') {
-            return true;
-        }
-        return path.startsWith('certificate/'); // TODO: change for a regular expression
+        return path === '/certificate' || path === '/certificate/search';
     }
 
 }
