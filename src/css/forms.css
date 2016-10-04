@@ -100,13 +100,16 @@
 
 .file-form-control {
     margin-top: 10px;
-
 }
 
 .file-form-control label {
     margin-left: 12px;
     font-size: 120%;
     color: #888888;
+}
+
+.file-form-control input[type="file"] {
+    font-size: 15px;
 }
 
 .input-container-with-glyphicon {
