@@ -17,6 +17,10 @@ export class RoutingService {
         this.router.navigate(['login']);
     }
 
+    toLogout(): void {
+        this.router.navigate(['logout']);
+    }
+
     toDashboard(): void {
         this.router.navigate(['dashboard']);
     }

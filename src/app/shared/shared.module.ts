@@ -37,7 +37,7 @@ import { UrlService } from './url/url.service';
     RoleService,
     RoutingService,
     SessionService,
-    UrlService,
+    UrlService
   ],
   exports: [
     AlertComponent,

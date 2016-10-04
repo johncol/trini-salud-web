@@ -12,7 +12,7 @@ export class AuthorizationService {
     ) { }
 
     canAccess(path: string): boolean {
-        if (path === '/' || path === '/login' || path === '/logout') {
+        if (path === '/' || path === 'login' || path === 'logout') {
             return true;
         } else if (!this.sessionService.sessionActive()) {
             return false;
@@ -25,7 +25,7 @@ export class AuthorizationService {
     }
 
     private canAccessCustomer(path: string): boolean {
-        return path === '/certificate' || path === '/certificate/search';
+        return path === 'certificate' || path === 'certificate/search';
     }
 
 }

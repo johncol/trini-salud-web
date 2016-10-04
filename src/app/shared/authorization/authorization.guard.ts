@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRoute, Router } from '@angular/router';
+import { CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 
 import { AuthorizationService } from './authorization.service';
+import { RoutingService } from './../routing/routing.service';
 
 @Injectable()
-export class AuthorizationGuard implements CanActivate{
+export class AuthorizationGuard implements CanActivate {
 
     constructor(
         private authorizationService: AuthorizationService,
-        private activatedRoute: ActivatedRoute,
-        private router: Router
+        private routingService: RoutingService
     ) { }
 
-    canActivate(): boolean {
-        let url: string = this.router.url;
+    canActivate(destination: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        let url: string = destination.url.join("/");
         let canAccess: boolean = this.authorizationService.canAccess(url);
-        console.warn('AuthorizationGuard not working:');
-        console.log('this.router.url: ', url);
-        console.log('canAccess: ', canAccess);
+        if (!canAccess) {
+            this.routingService.toLogout();
+        }
         return canAccess;
     }
 }
