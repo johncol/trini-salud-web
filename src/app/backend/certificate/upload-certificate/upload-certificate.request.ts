@@ -5,6 +5,6 @@ export class UploadCertificateRequest {
     constructor(
         public patient: PatientData,
         public certificate: CertificateData,
-        public customer: string
+        public customer?: string
     ) { }
 }

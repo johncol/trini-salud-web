@@ -22,6 +22,7 @@ export class UploadCertificateFormService {
 
     initFormControls(): FormGroup {
         this.form = this.formBuilder.group({
+            patientAlreadyRegistered: [false],
             identification: ['', Validators.required],
             name: ['', Validators.required],
             birthdate: ['', Validators.required],
@@ -48,9 +49,8 @@ export class UploadCertificateFormService {
     }
 
     processSubmit(): Observable<string> {
-        console.log('this.form.value: ', this.form.value);
         return Observable.create(subscriber => {
-            if (this.form.valid) {
+            if (this.isValid()) {
                 this.handleFormSubmit().subscribe(
                     response => this.handleSubmitResponse(subscriber, response),
                     error => subscriber.error('Error en el servidor')
@@ -67,13 +67,25 @@ export class UploadCertificateFormService {
         this.state.message = message;
     }
 
+    private isValid(): boolean {
+        let unregisteredPatient: boolean = !this.fieldValue('patientAlreadyRegistered');
+        if (unregisteredPatient) {
+            return this.form.valid;
+        }
+        let validId: boolean = this.validField('identification');
+        let validCertificateName: boolean = this.validField('certificateName');
+        // let validCertificateFile: boolean = this.validField('certificateFile');
+        // return validId && validCertificateName && validCertificateFile;
+        return validId && validCertificateName;
+    }
+
     private handleFormSubmit(): Observable<UploadCertificateResponse> {
         this.state.error = false;
         this.state.highlightErrors = false;
         this.state.displayMessage = false;
         this.state.message = null;
-        console.log('this.mapToDataRequest(): ', this.mapToDataRequest());
-        return this.certificateService.upload(this.mapToDataRequest());
+        let requestData: UploadCertificateRequest = this.mapToDataRequest();
+        return this.certificateService.upload(requestData);
     }
 
     private handleFormSubmitWithErrors(subscriber: Subscriber<any>): void {
@@ -89,8 +101,16 @@ export class UploadCertificateFormService {
     }
 
     private mapToDataRequest(): UploadCertificateRequest {
-        return new UploadCertificateRequest(
-            new PatientData(
+        let patientAlreadyRegistered: boolean = this.fieldValue('patientAlreadyRegistered');
+        let certificate: CertificateData = new CertificateData(
+            this.fieldValue('certificateName'),
+            null // new Blob([this.fieldValue('certificateName')])
+        );
+        if (patientAlreadyRegistered) {
+            let patient: PatientData = new PatientData(this.fieldValue('identification'));
+            return new UploadCertificateRequest(patient, certificate);
+        } else {
+            let patient: PatientData = new PatientData(
                 this.fieldValue('identification'),
                 this.fieldValue('name'),
                 this.fieldValue('birthdate'),
@@ -99,17 +119,16 @@ export class UploadCertificateFormService {
                 this.fieldValue('address'),
                 this.fieldValue('email'),
                 this.fieldValue('phone')
-            ),
-            new CertificateData(
-                this.fieldValue('certificateName'),
-                null
-                // new Blob([this.fieldValue('certificateName')])
-            ),
-            this.fieldValue('customer')
-        );
+            );
+            return new UploadCertificateRequest(patient, certificate, this.fieldValue('customer'));
+        }
     }
 
     private fieldValue(field: string): any {
         return this.form.controls[field].value;
+    }
+
+    private validField(field: string): any {
+        return this.form.controls[field].valid;
     }
 }

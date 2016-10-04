@@ -123,3 +123,7 @@
 .highlight-errors .ng-invalid {
     border-color: #d50000;
 }
+
+.checkbox {
+    margin-left: 10px;
+}

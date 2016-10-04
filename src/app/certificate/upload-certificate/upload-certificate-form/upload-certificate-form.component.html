@@ -1,43 +1,46 @@
 <section class="col-md-8">
-    <ts-alert
-        *ngIf="state.displayMessage"
-        [type]="state.error ? 'danger' : 'success'"
-        [message]="state.message"
-    ></ts-alert>
+    <ts-alert *ngIf="state.displayMessage" [type]="state.error ? 'danger' : 'success'" [message]="state.message"></ts-alert>
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate [class.highlight-errors]="state.highlightErrors">
         <div class="form-group row">
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="identification" formControlName="identification" placeholder="Identificacion" (keydown.enter)="focus('name', $event)">
+                <input type="text" class="form-control" id="identification" formControlName="identification" placeholder="Identificacion" (keydown.enter)="focus(form.controls.patientAlreadyRegistered.value ? 'certificateName' : 'name', $event)">
             </div>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nombre completo" (keydown.enter)="focus('birthdate', $event)">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" formControlName="patientAlreadyRegistered"> Los datos de este paciente ya fueron registrados anteriormente
+                    </label>
+                </div>
             </div>
-            <div class="col-sm-6">
-                <input type="date" class="form-control" id="birthdate" formControlName="birthdate" placeholder="Fecha de nacimiento" (keydown.enter)="focus('gender', $event)">
-            </div>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" id="gender" formControlName="gender" placeholder="Sexo" list="genders" (keydown.enter)="focus('eps', $event)">
-                <datalist id="genders">
-                    <option value="Mujer"></option>
-                    <option value="Hombre"></option>
-                </datalist>
-            </div>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" id="eps" formControlName="eps" placeholder="EPS" (keydown.enter)="focus('address', $event)">
-            </div>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" id="address" formControlName="address" placeholder="Dirección" (keydown.enter)="focus('email', $event)">
-            </div>
-            <div class="col-sm-6">
-                <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email" (keydown.enter)="focus('phone', $event)">
-            </div>
-            <div class="col-sm-6">
-                <input type="phone" class="form-control" id="phone" formControlName="phone" placeholder="Teléfono" (keydown.enter)="focus('customer', $event)">
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-12">
-                <input type="text" class="form-control" id="customer" formControlName="customer" placeholder="Empleador del paciente" (keydown.enter)="focus('certificateName', $event)">
+            <div [hidden]="form.controls.patientAlreadyRegistered.value">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nombre completo" (keydown.enter)="focus('birthdate', $event)">
+                </div>
+                <div class="col-sm-6">
+                    <input type="date" class="form-control" id="birthdate" formControlName="birthdate" placeholder="Fecha de nacimiento" (keydown.enter)="focus('gender', $event)">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="gender" formControlName="gender" placeholder="Sexo" list="genders" (keydown.enter)="focus('eps', $event)">
+                    <datalist id="genders">
+                        <option value="Mujer"></option>
+                        <option value="Hombre"></option>
+                    </datalist>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="eps" formControlName="eps" placeholder="EPS" (keydown.enter)="focus('address', $event)">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="address" formControlName="address" placeholder="Dirección" (keydown.enter)="focus('email', $event)">
+                </div>
+                <div class="col-sm-6">
+                    <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email" (keydown.enter)="focus('phone', $event)">
+                </div>
+                <div class="col-sm-6">
+                    <input type="phone" class="form-control" id="phone" formControlName="phone" placeholder="Teléfono" (keydown.enter)="focus('customer', $event)">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="customer" formControlName="customer" placeholder="Empleador del paciente" (keydown.enter)="focus('certificateName', $event)">
+                </div>
             </div>
             <div class="col-sm-12">
                 <input type="text" class="form-control" id="certificateName" formControlName="certificateName" placeholder="Descripción del certificado" (keydown.enter)="$event.preventDefault()">
