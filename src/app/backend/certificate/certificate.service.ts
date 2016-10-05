@@ -19,7 +19,7 @@ import { Certificate } from './search-certificate/certificate';
 export class CertificateService {
     private url: any = {
         upload: 'certificate',
-        get: 'certificate?identification=',
+        get: 'certificate?patient=',
     };
 
     constructor(
