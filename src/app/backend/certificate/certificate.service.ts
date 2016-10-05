@@ -28,28 +28,26 @@ export class CertificateService {
         private sessionService: SessionService
     ) { }
 
-    upload(request: UploadCertificateRequest): Observable<UploadCertificateResponse> {
+    upload(request: UploadCertificateRequest): Observable<BackendResponse<UploadCertificateResponse>> {
         let url: string = this.urlService.build(this.url.upload);
         return this.uploadDummyResponse(request)
         // return this.http.post(url, request)
             .map(response => response.json())
-            .do(response => console.log(`CertificateService - ${url} - response: `, response))
-            .map((response: BackendResponse) => response.data);
+            .do(response => console.log(`CertificateService - ${url} - response: `, response));
     }
 
-    get(identification: string): Observable<SearchCertificateResponse> {
+    get(identification: string): Observable<BackendResponse<SearchCertificateResponse>> {
         let url: string = this.urlService.build(this.url.get) + identification;
         // return this.http.get(url)
         return this.getDummyResponse(identification)
             .map(response => response.json())
-            .do(response => console.log(`CertificateService - ${url} - response: `, response))
-            .map((response: BackendResponse) => response.data);
+            .do(response => console.log(`CertificateService - ${url} - response: `, response));
     }
 
     private getDummyResponse(identification: string): Observable<any> {
         console.info('CertificateService.get() dummy response being used');
         return Observable.create(subscriber => {
-            let certificateResponse = new SearchCertificateResponse(identification === '1019034461', 'Ok', new Patient(
+            let certificateResponse = new SearchCertificateResponse(new Patient(
                 '1019034461',
                 'John Alexander Cely Suárez',
                 'Hombre',
@@ -64,8 +62,9 @@ export class CertificateService {
                 new Certificate('1019034461-33432', 'Examen de trigliceridos'),
                 new Certificate('1019034461-87657', 'Examen de glucosa concentrada')
             ]);
+            let found: boolean = identification === '1019034461';
             subscriber.next({
-                json: () => new BackendResponse(200, 'OK', certificateResponse)
+                json: () => new BackendResponse<SearchCertificateResponse>(found, found ? 'found' : 'no found', certificateResponse)
             });
         });
     }
@@ -74,14 +73,12 @@ export class CertificateService {
         console.info('CertificateService.upload() dummy response being used');
         return Observable.create(subscriber => {
             let certificateResponse = new UploadCertificateResponse(
-                true,
-                'Certificado cargado correctamente',
                 'certificateid',
                 'Resultado de trigliceridos',
                 'customerid'
             );
             subscriber.next({
-                json: () => new BackendResponse(200, 'OK', certificateResponse)
+                json: () => new BackendResponse<UploadCertificateResponse>(true, 'Certificado cargado correctamente', certificateResponse)
             });
         });
     }

@@ -1,7 +1,7 @@
-export class BackendResponse {
+export class BackendResponse<T> {
     constructor(
-        public status: number,
+        public success: boolean,
         public message: string,
-        public data: any
+        public data: T
     ) { }
 }

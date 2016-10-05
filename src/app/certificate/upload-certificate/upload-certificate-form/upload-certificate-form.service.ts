@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
 import 'rxjs/add/operator/filter';
 
+import { BackendResponse } from './../../../backend/shared/backend.response';
 import { CertificateData } from './../../../backend/certificate/upload-certificate/certificate-data'
 import { PatientData } from './../../../backend/certificate/upload-certificate/patient-data'
 import { UploadCertificateRequest } from './../../../backend/certificate/upload-certificate/upload-certificate.request';
@@ -79,7 +80,7 @@ export class UploadCertificateFormService {
         return validId && validCertificateName;
     }
 
-    private handleFormSubmit(): Observable<UploadCertificateResponse> {
+    private handleFormSubmit(): Observable<BackendResponse<UploadCertificateResponse>> {
         this.state.error = false;
         this.state.highlightErrors = false;
         this.state.displayMessage = false;
@@ -93,7 +94,7 @@ export class UploadCertificateFormService {
         subscriber.error('Hay errores en el formulario');
     }
 
-    private handleSubmitResponse(subscriber: Subscriber<any>, response: UploadCertificateResponse): void {
+    private handleSubmitResponse(subscriber: Subscriber<any>, response: BackendResponse<UploadCertificateResponse>): void {
         if (!response.success) {
             subscriber.error(response.message);
         }

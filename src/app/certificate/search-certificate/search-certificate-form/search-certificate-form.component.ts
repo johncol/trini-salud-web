@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder } from '@angular/forms';
 
+import { BackendResponse } from './../../../backend/shared/backend.response';
 import { RoutingService } from './../../../shared/routing/routing.service';
 import { CertificateService } from './../../../backend/certificate/certificate.service';
 import { CertificateResultService } from './../../certificate-result/certificate-result.service';
@@ -29,7 +30,7 @@ export class SearchCertificateFormComponent implements OnInit {
     }
 
     onSubmit(): void {
-        this.form.valid ? this.executeSearch() : this.handleFormError(); 
+        this.form.valid ? this.executeSearch() : this.handleFormError();
     }
 
     private initState(): void {
@@ -44,9 +45,9 @@ export class SearchCertificateFormComponent implements OnInit {
             .subscribe(response => this.handleSearchResponse(response));
     }
 
-    private handleSearchResponse(response: SearchCertificateResponse): void {
+    private handleSearchResponse(response: BackendResponse<SearchCertificateResponse>): void {
         if (response.success) {
-            this.certificateResultService.save(response);
+            this.certificateResultService.save(response.data);
             this.routingService.toCertificate();
         } else {
             this.initState();
