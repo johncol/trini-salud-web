@@ -78,10 +78,7 @@ export class CertificateService {
                 'Certificado cargado correctamente',
                 'certificateid',
                 'Resultado de trigliceridos',
-                '01/01/2016',
-                'customerid',
-                '101903441',
-                '101903441'
+                'customerid'
             );
             subscriber.next({
                 json: () => new BackendResponse(200, 'OK', certificateResponse)
