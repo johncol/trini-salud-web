@@ -2,12 +2,11 @@ export class UploadCertificateResponse {
     constructor(
         public success: boolean,
         public message: string,
-        public certificateid: string,
-        public name: string,
-        public date: string,
-        public customerid: string,
-        public username: string,
-        public password: string,
-        public file?: Blob
+        public certificateId: string,
+        public certificateName: string,
+        public customerId: string,
+        // public date: string,
+        // public username: string,
+        // public password: string
     ) { }
 }

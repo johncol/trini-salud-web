@@ -18,8 +18,8 @@ import { Certificate } from './search-certificate/certificate';
 @Injectable()
 export class CertificateService {
     private url: any = {
-        upload: 'patient/certificate',
-        get: 'patient/certificate?identification=',
+        upload: 'certificate',
+        get: 'certificate?identification=',
     };
 
     constructor(
