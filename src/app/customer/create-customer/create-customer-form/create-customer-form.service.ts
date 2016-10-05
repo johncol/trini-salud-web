@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
 import 'rxjs/add/operator/filter';
 
+import { BackendResponse } from './../../../backend/shared/backend.response';
 import { CustomerService } from './../../../backend/customer/customer.service';
 import { CreateCustomerRequest } from './../../../backend/customer/create-customer.request';
 import { CreateCustomerResponse } from './../../../backend/customer/create-customer.response';
@@ -59,7 +60,7 @@ export class CreateCustomerFormService {
         this.state.message = message;
     }
 
-    private handleFormSubmit(): Observable<CreateCustomerResponse> {
+    private handleFormSubmit(): Observable<BackendResponse<CreateCustomerResponse>> {
         this.state.error = false;
         this.state.highlightErrors = false;
         this.state.displayMessage = false;
@@ -72,7 +73,7 @@ export class CreateCustomerFormService {
         subscriber.error('Hay errores en el formulario');
     }
 
-    private handleSubmitResponse(subscriber: Subscriber<any>, response: CreateCustomerResponse): void {
+    private handleSubmitResponse(subscriber: Subscriber<any>, response: BackendResponse<CreateCustomerResponse>): void {
         if (!response.success) {
             subscriber.error(response.message);
         }
