@@ -72,13 +72,22 @@ export class CertificateService {
     private uploadDummyResponse(request: UploadCertificateRequest): Observable<any> {
         console.info('CertificateService.upload() dummy response being used');
         return Observable.create(subscriber => {
-            let certificateResponse = new UploadCertificateResponse(
-                'certificateid',
-                'Resultado de trigliceridos',
-                'customerid'
-            );
+            let response: BackendResponse<UploadCertificateResponse>;
+            if (request.patient.identification === '1019034461') {
+                if (!request.customer) {
+                    response = new BackendResponse<UploadCertificateResponse>(false, 'No se encontro información del paciente "1019034461"');
+                } else {
+                    response = new BackendResponse<UploadCertificateResponse>(true, 'Certificado cargado correctamente', new UploadCertificateResponse(
+                        'certificateid',
+                        'Resultado de trigliceridos',
+                        'customerid'
+                    ));
+                }
+            } else {
+                response = new BackendResponse<UploadCertificateResponse>(false, 'Ocurrio un error guardando el certificado');
+            }
             subscriber.next({
-                json: () => new BackendResponse<UploadCertificateResponse>(true, 'Certificado cargado correctamente', certificateResponse)
+                json: () => response
             });
         });
     }
