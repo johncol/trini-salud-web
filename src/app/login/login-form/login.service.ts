@@ -15,7 +15,7 @@ export class LoginService {
     login(loginData: LoginData): Observable<boolean> {
         let request = new AuthenticationRequest(loginData.username, loginData.password);
         return this.authenticationService.authenticate(request)
-            .map(response => response.authenticated);
+            .map(response => response.success);
     }
 
 }

@@ -23,13 +23,12 @@ export class AuthenticationService {
         private sessionService: SessionService
     ) { }
 
-    authenticate(request: AuthenticationRequest): Observable<AuthenticationResponse> {
+    authenticate(request: AuthenticationRequest): Observable<BackendResponse<AuthenticationResponse>> {
         let url: string = this.urlService.build(this.url.authenticate);
         return this.dummyResponse(request)
         // return this.http.post(url, request)
             .map(response => response.json())
             .do(response => console.log(`AuthenticationService - ${url} - response: `, response))
-            .map((response: BackendResponse) => response.data)
             .do(response => this.sessionService.handle(request, response));
     }
 
@@ -45,7 +44,7 @@ export class AuthenticationService {
                 authResponse = new AuthenticationResponse(false);
             }
             observer.next({
-                json: () => new BackendResponse(200, 'OK', authResponse)
+                json: () => new BackendResponse<AuthenticationResponse>(authResponse.authenticated, authResponse.authenticated ? 'success' : 'failed', authResponse)
             });
         });
     }
