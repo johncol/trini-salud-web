@@ -11,6 +11,7 @@ import { RoutingService } from './../../../shared/routing/routing.service';
 export class UploadCertificateFormComponent {
     form: FormGroup;
     state: any;
+    customerOptions: any[];
 
     constructor(
         private formService: UploadCertificateFormService,
@@ -21,6 +22,8 @@ export class UploadCertificateFormComponent {
     ngOnInit(): void {
         this.form = this.formService.initFormControls();
         this.state = this.formService.initFormState();
+        this.formService.initCustomerOptions()
+            .subscribe(options => this.customerOptions = options);
     }
 
     onSubmit(): void {

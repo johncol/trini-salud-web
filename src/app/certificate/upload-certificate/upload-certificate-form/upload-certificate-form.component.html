@@ -20,11 +20,11 @@
                     <input type="date" class="form-control" id="birthdate" formControlName="birthdate" placeholder="Fecha de nacimiento" (keydown.enter)="focus('gender', $event)">
                 </div>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="gender" formControlName="gender" placeholder="Sexo" list="genders" (keydown.enter)="focus('eps', $event)">
-                    <datalist id="genders">
-                        <option value="Mujer"></option>
-                        <option value="Hombre"></option>
-                    </datalist>
+                    <select class="form-control" id="gender" formControlName="gender" (keydown.enter)="focus('eps', $event)">
+                        <option selected value="">Selecciona sexo</option>
+                        <option value="Mujer">Mujer</option>
+                        <option value="Hombre">Hombre</option>
+                    </select>
                 </div>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" id="eps" formControlName="eps" placeholder="EPS" (keydown.enter)="focus('address', $event)">
@@ -39,7 +39,10 @@
                     <input type="phone" class="form-control" id="phone" formControlName="phone" placeholder="Teléfono" (keydown.enter)="focus('customer', $event)">
                 </div>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="customer" formControlName="customer" placeholder="Empleador del paciente" (keydown.enter)="focus('certificateName', $event)">
+                    <select class="form-control" id="customer" formControlName="customer" (keydown.enter)="focus('certificateName', $event)">
+                        <option selected value="">Selecciona el empleador del paciente</option>
+                        <option *ngFor="let customer of customerOptions" [value]="customer.id">{{customer.label}}</option>
+                    </select>
                 </div>
             </div>
             <div class="col-sm-12">

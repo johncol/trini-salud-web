@@ -10,6 +10,7 @@ import { PatientData } from './../../../backend/certificate/upload-certificate/p
 import { UploadCertificateRequest } from './../../../backend/certificate/upload-certificate/upload-certificate.request';
 import { UploadCertificateResponse } from './../../../backend/certificate/upload-certificate/upload-certificate.response';
 import { CertificateService } from './../../../backend/certificate/certificate.service';
+import { CustomerService } from './../../../backend/customer/customer.service';
 
 @Injectable()
 export class UploadCertificateFormService {
@@ -18,7 +19,8 @@ export class UploadCertificateFormService {
 
     constructor(
         private formBuilder: FormBuilder,
-        private certificateService: CertificateService
+        private certificateService: CertificateService,
+        private customerService: CustomerService
     ) { }
 
     initFormControls(): FormGroup {
@@ -47,6 +49,20 @@ export class UploadCertificateFormService {
             message: null
         };
         return this.state;
+    }
+
+    initCustomerOptions(): Observable<any[]> {
+        return Observable.create(subscriber => {
+            let customerOptions: any[] = [];
+            this.customerService.list().subscribe(response => {
+                if (response.success) {
+                    response.data.forEach(customer => 
+                        customerOptions.push({ id: customer.identification, label: `${customer.identification} - ${customer.name}` })
+                    );
+                }
+            });
+            subscriber.next(customerOptions);
+        });
     }
 
     processSubmit(): Observable<string> {
