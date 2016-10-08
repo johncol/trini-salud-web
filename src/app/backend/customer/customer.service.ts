@@ -27,8 +27,8 @@ export class CustomerService {
 
     save(request: CreateCustomerRequest): Observable<BackendResponse<CreateCustomerResponse>> {
         let url: string = this.urlService.build(this.url.create);
-        return this.saveDummyResponse(request)
-        // return this.http.post(url, request)
+        // return this.saveDummyResponse(request)
+        return this.http.post(url, request)
             .map(response => response.json())
             .do(response => console.log(`CustomerService - ${url} - response: `, response));
     }
@@ -45,8 +45,8 @@ export class CustomerService {
 
     list(): Observable<BackendResponse<CustomerResponse[]>> {
         let url: string = this.urlService.build(this.url.list);
-        return this.listDummyResponse()
-        // return this.http.get(url)
+        // return this.listDummyResponse()
+        return this.http.get(url)
             .map(response => response.json())
             .do(response => console.log(`CustomerService - ${url} - response: `, response));
     }

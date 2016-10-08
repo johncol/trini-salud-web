@@ -25,8 +25,8 @@ export class AuthenticationService {
 
     authenticate(request: AuthenticationRequest): Observable<BackendResponse<AuthenticationResponse>> {
         let url: string = this.urlService.build(this.url.authenticate);
-        return this.dummyResponse(request)
-        // return this.http.post(url, request)
+        // return this.dummyResponse(request)
+        return this.http.post(url, request)
             .map(response => response.json())
             .do(response => console.log(`AuthenticationService - ${url} - response: `, response))
             .do(response => this.sessionService.handle(request, response));

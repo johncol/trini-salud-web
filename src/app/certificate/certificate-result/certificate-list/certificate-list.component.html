@@ -2,7 +2,7 @@
     <h1>Certificados</h1>
     <ul class="certificate-list">
         <li *ngFor="let certificate of certificates">
-            <a [href]="buildCertificateUrl(certificate.linkId)" target="_blank">
+            <a [href]="buildCertificateUrl(certificate.linkId)">
                 <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
                 <span>{{certificate.name}}</span>
             </a>

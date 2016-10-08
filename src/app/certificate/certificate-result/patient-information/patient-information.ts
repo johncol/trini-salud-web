@@ -11,4 +11,13 @@ export class PatientInformation {
         private eps: string,
         private customer: string
     ) { }
+
+    getGender(): string {
+        if (this.gender === 'f') {
+            return 'Mujer';
+        } else if (this.gender === 'm') {
+            return 'Hombre';
+        }
+        return 'Sexo indefinido';
+    }
 }

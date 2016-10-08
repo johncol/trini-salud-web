@@ -15,6 +15,6 @@ export class CertificateListComponent implements OnInit {
     ngOnInit(): void { }
 
     buildCertificateUrl(linkId: string): string {
-        return this.urlService.build('patient/certificate/' + linkId);
+        return this.urlService.build('certificate/' + linkId);
     }
 }

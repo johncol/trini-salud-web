@@ -30,16 +30,16 @@ export class CertificateService {
 
     upload(request: UploadCertificateRequest): Observable<BackendResponse<UploadCertificateResponse>> {
         let url: string = this.urlService.build(this.url.upload);
-        return this.uploadDummyResponse(request)
-        // return this.http.post(url, request)
+        // return this.uploadDummyResponse(request)
+        return this.http.post(url, request)
             .map(response => response.json())
             .do(response => console.log(`CertificateService - ${url} - response: `, response));
     }
 
     get(identification: string): Observable<BackendResponse<SearchCertificateResponse>> {
         let url: string = this.urlService.build(this.url.get) + identification;
-        // return this.http.get(url)
-        return this.getDummyResponse(identification)
+        return this.http.get(url)
+        // return this.getDummyResponse(identification)
             .map(response => response.json())
             .do(response => console.log(`CertificateService - ${url} - response: `, response));
     }

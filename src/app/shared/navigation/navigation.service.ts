@@ -20,9 +20,9 @@ export class NavigationService {
         } else if (this.roleService.isCustomer()) {
             return this.itemsPerRole[this.roleService.getCustomer()];
         }
-        console.info('Using IpsWorker nav items when no role is found');
-        return this.itemsPerRole[this.roleService.getIpsWorker()];
-        // throw new Error('NavigationService.getNavigationItems(): should not get here!');
+        // console.info('Using IpsWorker nav items when no role is found');
+        // return this.itemsPerRole[this.roleService.getIpsWorker()];
+        throw new Error('NavigationService.getNavigationItems(): should not get here!');
     }
 
     private initService(): void {
