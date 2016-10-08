@@ -33,7 +33,7 @@ export class CertificateResultService {
             patient.name,
             patient.gender,
             patient.age,
-            this.mapDate(patient.birthdate),
+            patient.birthdate,
             patient.address,
             patient.phone,
             patient.email,
@@ -48,10 +48,6 @@ export class CertificateResultService {
             certificates.push(new Certificate(certificate.certificateId, certificate.name));
         });
         return certificates;
-    }
-
-    private mapDate(millis: number): string {
-        return 'Jun 8 2016 (dummy date)';
     }
 
 }

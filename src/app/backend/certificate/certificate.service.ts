@@ -52,7 +52,7 @@ export class CertificateService {
                 'John Alexander Cely Suárez',
                 'Hombre',
                 27,
-                1132132123132,
+                '24 de junio de 1989',
                 'Avenida calle 26 #44 A39 Apto 906',
                 '305 772 4370',
                 'john.19col@gmail.com',
@@ -79,8 +79,7 @@ export class CertificateService {
                 } else {
                     response = new BackendResponse<UploadCertificateResponse>(true, 'Certificado cargado correctamente', new UploadCertificateResponse(
                         'certificateid',
-                        'Resultado de trigliceridos',
-                        'customerid'
+                        'Resultado de trigliceridos'
                     ));
                 }
             } else {

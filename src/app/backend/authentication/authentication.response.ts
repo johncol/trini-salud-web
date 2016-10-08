@@ -1,7 +1,7 @@
 export class AuthenticationResponse {
     constructor(
         public authenticated: boolean,
-        public rol?: string,
+        public role?: string,
         public token?: string
     ) { }
 }

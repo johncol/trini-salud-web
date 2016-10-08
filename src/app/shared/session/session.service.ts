@@ -11,7 +11,7 @@ export class SessionService {
 
     handle(request: AuthenticationRequest, response: BackendResponse<AuthenticationResponse>): void {
         if (response.success) {
-            this.sessionData = new SessionData(request.username, response.data.rol, response.data.token);
+            this.sessionData = new SessionData(request.username, response.data.role, response.data.token);
             console.log('SessionData saved: ', this.sessionData);
         } else {
             this.clean();
