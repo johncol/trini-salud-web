@@ -20,18 +20,22 @@ export class UploadCertificateFormComponent {
     ) { }
 
     ngOnInit(): void {
-        this.form = this.formService.initFormControls();
+        this.form = this.formService.initFormControls(this.elementRef);
         this.state = this.formService.initFormState();
         this.formService.initCustomerOptions()
             .subscribe(options => this.customerOptions = options);
     }
 
     onSubmit(): void {
-        this.formService.processSubmit()
+        this.formService.processSubmit(this.elementRef)
             .subscribe(
                 success => this.routingService.toSuccessProcess(),
                 error => this.formService.displayError(error)
             );
+    }
+
+    fileChanged(event: any): void {
+        this.formService.triggerFileValidation();
     }
 
     focus(field: string, event: any): void {

@@ -54,8 +54,7 @@
                         <label for="exampleInputFile">Certificado</label>
                     </div>
                     <div class="col-sm-6">
-                        <!--<input type="file" class="form-control" id="certificateFile" formControlName="certificateFile">-->
-                        <input type="file" class="form-control" id="certificateFile">
+                        <input type="file" class="form-control" id="certificateFile" formControlName="certificateFile" (change)="fileChanged($event)">
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
@@ -11,6 +11,9 @@ import { UploadCertificateRequest } from './../../../backend/certificate/upload-
 import { UploadCertificateResponse } from './../../../backend/certificate/upload-certificate/upload-certificate.response';
 import { CertificateService } from './../../../backend/certificate/certificate.service';
 import { CustomerService } from './../../../backend/customer/customer.service';
+import { FileValidators } from './../../../shared/custom-form-validations/file-validators';
+
+declare let $: any;
 
 @Injectable()
 export class UploadCertificateFormService {
@@ -23,7 +26,8 @@ export class UploadCertificateFormService {
         private customerService: CustomerService
     ) { }
 
-    initFormControls(): FormGroup {
+    initFormControls(elementRef: ElementRef): FormGroup {
+        let fileValidators: FileValidators = new FileValidators(elementRef, 'certificateFile');
         this.form = this.formBuilder.group({
             patientAlreadyRegistered: [false],
             identification: ['', Validators.required],
@@ -36,7 +40,7 @@ export class UploadCertificateFormService {
             phone: ['', Validators.required],
             customer: ['', Validators.required],
             certificateName: ['', Validators.required],
-            // certificateFile: ['', Validators.required]
+            certificateFile: ['', fileValidators.required.bind(fileValidators)]
         });
         return this.form;
     }
@@ -56,7 +60,7 @@ export class UploadCertificateFormService {
             let customerOptions: any[] = [];
             this.customerService.list().subscribe(response => {
                 if (response.success) {
-                    response.data.forEach(customer => 
+                    response.data.forEach(customer =>
                         customerOptions.push({ id: customer.identification, label: `${customer.identification} - ${customer.name}` })
                     );
                 }
@@ -65,10 +69,10 @@ export class UploadCertificateFormService {
         });
     }
 
-    processSubmit(): Observable<string> {
+    processSubmit(elementRef: ElementRef): Observable<string> {
         return Observable.create(subscriber => {
             if (this.isValid()) {
-                this.handleFormSubmit().subscribe(
+                this.handleFormSubmit(elementRef).subscribe(
                     response => this.handleSubmitResponse(subscriber, response),
                     error => subscriber.error('Error en el servidor')
                 );
@@ -76,6 +80,10 @@ export class UploadCertificateFormService {
                 this.handleFormSubmitWithErrors(subscriber);
             }
         });
+    }
+
+    triggerFileValidation(): void {
+        this.form.controls['certificateFile'].updateValueAndValidity();
     }
 
     displayError(message: string): void {
@@ -91,18 +99,21 @@ export class UploadCertificateFormService {
         }
         let validId: boolean = this.validField('identification');
         let validCertificateName: boolean = this.validField('certificateName');
-        // let validCertificateFile: boolean = this.validField('certificateFile');
-        // return validId && validCertificateName && validCertificateFile;
-        return validId && validCertificateName;
+        let validCertificateFile: boolean = this.validField('certificateFile');
+        return validId && validCertificateName && validCertificateFile;
     }
 
-    private handleFormSubmit(): Observable<BackendResponse<UploadCertificateResponse>> {
+    private handleFormSubmit(elementRef: ElementRef): Observable<BackendResponse<UploadCertificateResponse>> {
         this.state.error = false;
         this.state.highlightErrors = false;
         this.state.displayMessage = false;
         this.state.message = null;
-        let requestData: UploadCertificateRequest = this.mapToDataRequest();
-        return this.certificateService.upload(requestData);
+        return Observable.create(subscriber => {
+            this.mapToDataRequest(elementRef).subscribe(requestData => {
+                this.certificateService.upload(requestData)
+                    .subscribe(response => subscriber.next(response));
+            })
+        });
     }
 
     private handleFormSubmitWithErrors(subscriber: Subscriber<any>): void {
@@ -117,28 +128,48 @@ export class UploadCertificateFormService {
         subscriber.next('Ok');
     }
 
-    private mapToDataRequest(): UploadCertificateRequest {
-        let patientAlreadyRegistered: boolean = this.fieldValue('patientAlreadyRegistered');
+    private mapToDataRequest(elementRef: ElementRef): Observable<UploadCertificateRequest> {
+        return  Observable.create(subscriber => {
+            this.readFile(elementRef).subscribe(file => {
+                subscriber.next(this.buildUploadCertificateRequest(file));
+            });
+        });
+    }
+
+    private readFile(elementRef: ElementRef): Observable<ArrayBuffer> {
+        return Observable.create(subscriber => {
+            let file: Blob = $(elementRef.nativeElement).find('#certificateFile')[0].files[0];
+            let reader = new FileReader();
+            reader.onload = function (event: any) {
+                console.log('reader on load event: ', event);
+                subscriber.next(event.target.result);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    private buildUploadCertificateRequest(file: ArrayBuffer): UploadCertificateRequest {
         let certificate: CertificateData = new CertificateData(
             this.fieldValue('certificateName'),
-            null // new Blob([this.fieldValue('certificateName')])
+            file
         );
-        if (patientAlreadyRegistered) {
-            let patient: PatientData = new PatientData(this.fieldValue('identification'));
-            return new UploadCertificateRequest(patient, certificate);
-        } else {
-            let patient: PatientData = new PatientData(
-                this.fieldValue('identification'),
-                this.fieldValue('name'),
-                this.fieldValue('birthdate'),
-                this.fieldValue('gender'),
-                this.fieldValue('eps'),
-                this.fieldValue('address'),
-                this.fieldValue('email'),
-                this.fieldValue('phone')
-            );
-            return new UploadCertificateRequest(patient, certificate, this.fieldValue('customer'));
-        }
+        let patient: PatientData = this.fieldValue('patientAlreadyRegistered') ?
+            new PatientData(this.fieldValue('identification')) :
+            this.buildFullPatientData();
+        return new UploadCertificateRequest(patient, certificate, this.fieldValue('customer'));
+    }
+
+    private buildFullPatientData(): PatientData {
+        return new PatientData(
+            this.fieldValue('identification'),
+            this.fieldValue('name'),
+            this.fieldValue('birthdate'),
+            this.fieldValue('gender'),
+            this.fieldValue('eps'),
+            this.fieldValue('address'),
+            this.fieldValue('email'),
+            this.fieldValue('phone')
+        );
     }
 
     private fieldValue(field: string): any {
