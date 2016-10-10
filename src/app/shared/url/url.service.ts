@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 
+import { environment } from './../../../environments/environment';
+
 @Injectable()
 export class UrlService {
-    // private backendUrl: string = 'https://trini-salud-api.herokuapp.com/';
-    private backendUrl: string = 'http://localhost:8080/';
+    private backendUrl: string = environment.api;
 
     build(resource: string): string {
         return this.backendUrl + resource;
