@@ -136,7 +136,7 @@ export class UploadCertificateFormService {
         });
     }
 
-    private readFile(elementRef: ElementRef): Observable<ArrayBuffer> {
+    private readFile(elementRef: ElementRef): Observable<string> {
         return Observable.create(subscriber => {
             let file: Blob = $(elementRef.nativeElement).find('#certificateFile')[0].files[0];
             let reader = new FileReader();
@@ -148,7 +148,7 @@ export class UploadCertificateFormService {
         });
     }
 
-    private buildUploadCertificateRequest(file: ArrayBuffer): UploadCertificateRequest {
+    private buildUploadCertificateRequest(file: string): UploadCertificateRequest {
         let certificate: CertificateData = new CertificateData(
             this.fieldValue('certificateName'),
             file

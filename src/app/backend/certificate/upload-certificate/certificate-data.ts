@@ -1,6 +1,6 @@
 export class CertificateData {
     constructor(
         public name: string,
-        public file: ArrayBuffer
+        public file: string
     ) { }
 }
