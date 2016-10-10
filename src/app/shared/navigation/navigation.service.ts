@@ -15,14 +15,14 @@ export class NavigationService {
     }
 
     getNavigationItems(): NavigationItem[] {
-        if (this.roleService.isIpsWorker()) {
-            return this.itemsPerRole[this.roleService.getIpsWorker()];
-        } else if (this.roleService.isCustomer()) {
-            return this.itemsPerRole[this.roleService.getCustomer()];
-        }
-        // console.info('Using IpsWorker nav items when no role is found');
-        // return this.itemsPerRole[this.roleService.getIpsWorker()];
-        throw new Error('NavigationService.getNavigationItems(): should not get here!');
+        console.warn('Always using IpsWorker nav items for development');
+        return this.itemsPerRole[this.roleService.getIpsWorker()];
+        // if (this.roleService.isIpsWorker()) {
+        //     return this.itemsPerRole[this.roleService.getIpsWorker()];
+        // } else if (this.roleService.isCustomer()) {
+        //     return this.itemsPerRole[this.roleService.getCustomer()];
+        // }
+        // throw new Error('NavigationService.getNavigationItems(): should not get here!');
     }
 
     private initService(): void {
