@@ -49,3 +49,11 @@
         transform: scale(1);
     }
 }
+
+.loading-message {
+    max-width: 300px;
+    background: #ffffff;
+    margin: 0 auto -25px;
+    border: 1px solid #eeeeee;
+    padding: 15px 20px 35px;
+}

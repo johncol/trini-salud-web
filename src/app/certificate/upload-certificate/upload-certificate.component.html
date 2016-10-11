@@ -6,7 +6,10 @@
     ></ts-header>
     <div class="panel-body">
         <div class="row">
-            <ts-loading [display]="loading"></ts-loading>
+            <ts-loading
+                [display]="loading"
+                message="El tiempo de carga depende de tu velocidad de internet y del tamaño del archivo"
+            ></ts-loading>
             <ts-upload-certificate-form (onMakingRequest)="loading = $event"></ts-upload-certificate-form>
             <ts-upload-certificate-note></ts-upload-certificate-note>
         </div>

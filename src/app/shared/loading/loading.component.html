@@ -1,5 +1,8 @@
 <!-- https://github.com/tobiasahlin/SpinKit/blob/master/examples/7-three-bounce.html -->
 <div class="loading-component" [hidden]="!display">
+    <div class="loading-message" *ngIf="message">
+        {{message}}
+    </div>
     <div class="sk-three-bounce">
         <div class="sk-child sk-bounce1"></div>
         <div class="sk-child sk-bounce2"></div>
