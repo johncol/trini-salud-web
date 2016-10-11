@@ -141,8 +141,8 @@ export class UploadCertificateFormService {
             let file: Blob = $(elementRef.nativeElement).find('#certificateFile')[0].files[0];
             let reader = new FileReader();
             reader.onload = function (event: any) {
-                console.log('reader on load event: ', event);
-                subscriber.next(event.target.result);
+                let file64: string = event.target.result;
+                subscriber.next(file64.substr(file64.indexOf(',') + 1));
             };
             reader.readAsDataURL(file);
         });
