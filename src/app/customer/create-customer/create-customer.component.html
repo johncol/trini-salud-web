@@ -5,8 +5,9 @@
         subtitle="Ingresa los datos del nuevo cliente"
     ></ts-header>
     <div class="panel-body">
+        <ts-loading [display]="loading"></ts-loading>
         <div class="row">
-            <ts-create-customer-form></ts-create-customer-form>
+            <ts-create-customer-form (onMakingRequest)="loading = $event"></ts-create-customer-form>
             <ts-create-customer-note></ts-create-customer-note>
         </div>
     </div>

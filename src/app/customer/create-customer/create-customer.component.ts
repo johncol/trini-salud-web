@@ -4,4 +4,6 @@ import { Component, OnInit } from '@angular/core';
     selector: 'ts-create-customer',
     templateUrl: 'create-customer.component.html'
 })
-export class CreateCustomerComponent { }
+export class CreateCustomerComponent {
+    loading: boolean = false;
+}

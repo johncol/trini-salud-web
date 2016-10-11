@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 import { CreateCustomerFormService } from './create-customer-form.service';
@@ -10,6 +10,7 @@ import { CustomerCreatedService } from './../../customer-created/customer-create
     templateUrl: 'create-customer-form.component.html'
 })
 export class CreateCustomerForm implements OnInit {
+    @Output() onMakingRequest: EventEmitter<boolean> = new EventEmitter<boolean>();
     form: FormGroup;
     state: any;
 
@@ -27,6 +28,7 @@ export class CreateCustomerForm implements OnInit {
     }
 
     onSubmit(): void {
+        this.onMakingRequest.emit(true);
         this.formService.processSubmit()
             .subscribe(
                 success => {
@@ -36,7 +38,10 @@ export class CreateCustomerForm implements OnInit {
                     );
                     this.routingService.toCustomerCreated();
                 },
-                error => this.formService.displayError(error)
+                error => {
+                    this.onMakingRequest.emit(false);
+                    this.formService.displayError(error);
+                }
             );
     }
 
