@@ -21,8 +21,15 @@ body {
 }
 
 @media (max-width: 500px) {
+    body {
+        padding-top: 0;
+    }
+    .container-fluid {
+        padding-right: 0;
+        padding-left: 0;
+    }
     .panel.panel-default {
-        margin: 10px auto;
+        margin: 0 auto;
     }
 }
 
