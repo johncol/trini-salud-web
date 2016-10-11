@@ -6,7 +6,8 @@
     ></ts-header>
     <div class="panel-body">
         <div class="row">
-            <ts-search-certificate-form></ts-search-certificate-form>
+            <ts-loading [display]="loading"></ts-loading>
+            <ts-search-certificate-form (onMakingRequest)="loading = $event"></ts-search-certificate-form>
             <ts-search-certificate-note></ts-search-certificate-note>
         </div>
     </div>

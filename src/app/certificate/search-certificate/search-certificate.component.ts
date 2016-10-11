@@ -4,4 +4,6 @@ import { Component } from '@angular/core';
     selector: 'ts-search-certificate',
     templateUrl: 'search-certificate.component.html'
 })
-export class SearchCertificateComponent { }
+export class SearchCertificateComponent {
+    loading: boolean = false;
+}

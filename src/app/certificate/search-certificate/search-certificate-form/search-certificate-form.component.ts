@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder } from '@angular/forms';
 
 import { BackendResponse } from './../../../backend/shared/backend.response';
@@ -12,6 +12,7 @@ import { SearchCertificateResponse } from './../../../backend/certificate/search
     templateUrl: 'search-certificate-form.component.html'
 })
 export class SearchCertificateFormComponent implements OnInit {
+    @Output() onMakingRequest: EventEmitter<boolean> = new EventEmitter<boolean>();
     form: FormGroup;
     state: any;
 
@@ -41,11 +42,13 @@ export class SearchCertificateFormComponent implements OnInit {
     }
 
     private executeSearch(): void {
+        this.onMakingRequest.emit(true);
         this.certificateService.get(this.form.value.identification)
             .subscribe(response => this.handleSearchResponse(response));
     }
 
     private handleSearchResponse(response: BackendResponse<SearchCertificateResponse>): void {
+        this.onMakingRequest.emit(false);
         if (response.success) {
             this.certificateResultService.save(response.data);
             this.routingService.toCertificate();
