@@ -9,7 +9,8 @@
             type="warning"
             [message]="errorMessage"
         ></ts-alert>
-        <ts-login-form (onResult)="manageResult($event)"></ts-login-form>
+        <ts-loading [display]="loading"></ts-loading>
+        <ts-login-form (onMakingRequest)="loading = $event" (onResult)="manageResult($event)"></ts-login-form>
     </div>
     <ts-login-footer></ts-login-footer>
 </div>

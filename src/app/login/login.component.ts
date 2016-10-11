@@ -14,6 +14,7 @@ const MESSAGES = {
     templateUrl: './login.component.html'
 })
 export class LoginComponent {
+    loading: boolean = false;
     errorMessage: string;
 
     constructor(
@@ -39,5 +40,5 @@ export class LoginComponent {
                 throw new Error('Unexpected LoginStatus: ' + loginStatus);
         }
     }
-    
+
 }

@@ -13,6 +13,10 @@ body {
     padding-top: 25px;
 }
 
+.panel-body {
+    position: relative;
+}
+
 .panel.panel-default {
     border-radius: 0;
     margin: 0 auto;
@@ -211,3 +215,14 @@ body {
 .customer-created-value {
     min-width: 140px;
 }
+
+.loading-component {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 10000;
+}
+
+

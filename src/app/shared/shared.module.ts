@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { ShowPasswordGlyphiconComponent } from './show-password-glyphicon/show-password-glyphicon.component';
 import { SuccessProcessComponent } from './success-process/success-process.component';
+import { LoadingComponent } from './loading/loading.component';
 
 import { AuthorizationGuard } from './authorization/authorization.guard';
 import { AuthorizationService } from './authorization/authorization.service';
@@ -24,7 +25,8 @@ import { UrlService } from './url/url.service';
     FooterComponent,
     ShowPasswordGlyphiconComponent,
     NavigationComponent,
-    SuccessProcessComponent
+    SuccessProcessComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { UrlService } from './url/url.service';
     FooterComponent,
     ShowPasswordGlyphiconComponent,
     NavigationComponent,
-    SuccessProcessComponent
+    SuccessProcessComponent,
+    LoadingComponent
   ]
 })
 export class SharedModule { }

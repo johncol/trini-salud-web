@@ -11,6 +11,7 @@ import { LoginStatus } from './login-status.enum';
     templateUrl: 'login-form.component.html'
 })
 export class LoginFormComponent implements OnInit {
+    @Output() onMakingRequest: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() onResult: EventEmitter<LoginStatus> = new EventEmitter<LoginStatus>();
     loginForm: FormGroup;
 
@@ -29,6 +30,7 @@ export class LoginFormComponent implements OnInit {
 
     onSubmit(): void {
         if (this.loginForm.valid) {
+            this.onMakingRequest.emit(true);
             this.loginService.login(this.loginForm.value)
                 .subscribe(
                     authenticated => this.handleLoginResponse(authenticated),
@@ -45,6 +47,7 @@ export class LoginFormComponent implements OnInit {
     }
 
     private handleLoginResponse(authenticated: boolean): void {
+        this.onMakingRequest.emit(false);
         this.loginForm.reset();
         if (authenticated) {
             this.onResult.emit(LoginStatus.AUTHENTICATED);
