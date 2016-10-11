@@ -45,6 +45,10 @@ export class RoutingService {
         this.router.navigate(['success']);
     }
 
+    toCustomerCreated(): void {
+        this.router.navigate(['customer', 'created']);
+    }
+
     afterLogin(): void {
         if (!this.sessionService.sessionActive()) {
             console.warn('No destination after login if there is no session');

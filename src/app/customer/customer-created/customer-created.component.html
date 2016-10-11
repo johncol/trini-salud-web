@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+    <ts-navigation></ts-navigation>
+    <ts-header
+        title="Cliente registrado exitosamente!"
+    ></ts-header>
+    <div class="panel-body">
+        <div class="row">
+            <section class="col-md-12">
+                <ts-alert
+                    type="success"
+                    message="La informacion fue guardada correctamente"
+                ></ts-alert>
+                <div class="well customer-created-well">
+                    <p>
+                        Recuerda que estas son las credenciales con las tu cliente podrá acceder a esta
+                        plataforma para consultar los certificados médicos de sus trabajadores:
+                    </p>
+                    <div>
+                        <span class="customer-created-field">Usuario:</span>
+                        <span class="customer-created-value">{{username}}</span>
+                    </div>
+                    <div class="customer-created-password">
+                        <span class="customer-created-field">Contraseña:</span>
+                        <span class="customer-created-value">{{password}}</span>
+                        <ts-show-password-glyphicon (show)="toggle($event)"></ts-show-password-glyphicon>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="row">
+            <a routerLink="/customer/create" class="btn btn-default btn-main btn-back">Atras</a>
+        </div>
+    </div>
+    <ts-footer></ts-footer>
+</div>

@@ -60,6 +60,10 @@ export class CreateCustomerFormService {
         this.state.message = message;
     }
 
+    value(field: string): any {
+        return this.form.controls[field].value;
+    }
+
     private handleFormSubmit(): Observable<BackendResponse<CreateCustomerResponse>> {
         this.state.error = false;
         this.state.highlightErrors = false;

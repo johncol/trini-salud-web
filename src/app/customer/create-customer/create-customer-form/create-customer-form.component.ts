@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/fo
 
 import { CreateCustomerFormService } from './create-customer-form.service';
 import { RoutingService } from './../../../shared/routing/routing.service';
+import { CustomerCreatedService } from './../../customer-created/customer-created.service';
 
 @Component({
     selector: 'ts-create-customer-form',
@@ -15,7 +16,9 @@ export class CreateCustomerForm implements OnInit {
     constructor(
         private formService: CreateCustomerFormService,
         private routingService: RoutingService,
-        private elementRef: ElementRef
+        private elementRef: ElementRef,
+        private customerCreatedService: CustomerCreatedService
+
     ) { }
 
     ngOnInit(): void {
@@ -26,7 +29,13 @@ export class CreateCustomerForm implements OnInit {
     onSubmit(): void {
         this.formService.processSubmit()
             .subscribe(
-                success => this.routingService.toSuccessProcess(),
+                success => {
+                    this.customerCreatedService.save(
+                        this.formService.value('identification'),
+                        this.formService.value('password')
+                    );
+                    this.routingService.toCustomerCreated();
+                },
                 error => this.formService.displayError(error)
             );
     }

@@ -173,3 +173,41 @@ body {
 .certificate-list {
     margin-bottom: 20px;
 }
+
+.customer-created-well {
+    border-radius: 0;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+}
+
+.customer-created-well p {
+    margin-bottom: 20px;
+}
+
+.customer-created-well .customer-created-field,
+.customer-created-well .customer-created-value {
+    font-size: 120%;
+    line-height: 130%;
+    display: inline-block;
+}
+
+.customer-created-well .glyphicon {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
+
+.customer-created-well .customer-created-password {
+    position: relative;
+}
+
+.customer-created-field {
+    min-width: 110px;
+    font-weight: bold;
+}
+
+.customer-created-value {
+    min-width: 140px;
+}
