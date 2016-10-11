@@ -4,4 +4,6 @@ import { Component } from '@angular/core';
     selector: 'ts-upload-certificate',
     templateUrl: 'upload-certificate.component.html'
 })
-export class UploadCertificateComponent { }
+export class UploadCertificateComponent {
+    loading: boolean = false;
+}

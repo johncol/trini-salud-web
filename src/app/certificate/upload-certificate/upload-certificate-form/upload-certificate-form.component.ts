@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 import { UploadCertificateFormService } from './upload-certificate-form.service';
@@ -11,6 +11,7 @@ declare let $: any;
     templateUrl: 'upload-certificate-form.component.html'
 })
 export class UploadCertificateFormComponent {
+    @Output() onMakingRequest: EventEmitter<boolean> = new EventEmitter<boolean>();
     form: FormGroup;
     state: any;
     customerOptions: any[];
@@ -29,10 +30,11 @@ export class UploadCertificateFormComponent {
     }
 
     onSubmit(): void {
+        this.onMakingRequest.emit(true);
         this.formService.processSubmit(this.elementRef)
             .subscribe(
                 success => this.routingService.toSuccessProcess(),
-                error => this.formService.displayError(error)
+                error => this.handleErrorResult(error)
             );
     }
 
@@ -43,6 +45,11 @@ export class UploadCertificateFormComponent {
     focus(field: string, event: any): void {
         event.preventDefault();
         this.elementRef.nativeElement.querySelector('#' + field).focus();
+    }
+
+    private handleErrorResult(error: any): void {
+        this.onMakingRequest.emit(false);
+        this.formService.displayError(error);
     }
 
 }

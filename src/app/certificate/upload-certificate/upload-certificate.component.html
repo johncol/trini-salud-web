@@ -6,7 +6,8 @@
     ></ts-header>
     <div class="panel-body">
         <div class="row">
-            <ts-upload-certificate-form></ts-upload-certificate-form>
+            <ts-loading [display]="loading"></ts-loading>
+            <ts-upload-certificate-form (onMakingRequest)="loading = $event"></ts-upload-certificate-form>
             <ts-upload-certificate-note></ts-upload-certificate-note>
         </div>
     </div>
