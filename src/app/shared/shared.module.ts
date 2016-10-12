@@ -12,6 +12,7 @@ import { LoadingComponent } from './loading/loading.component';
 
 import { AuthorizationGuard } from './authorization/authorization.guard';
 import { AuthorizationService } from './authorization/authorization.service';
+import { LogService } from './log/log.service';
 import { NavigationService } from './navigation/navigation.service';
 import { RoleService } from './authorization/role.service';
 import { RoutingService } from './routing/routing.service';
@@ -35,6 +36,7 @@ import { UrlService } from './url/url.service';
   providers: [
     AuthorizationGuard,
     AuthorizationService,
+    LogService,
     NavigationService,
     RoleService,
     RoutingService,

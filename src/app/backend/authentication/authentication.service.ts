@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
+import { LogService } from './../../shared/log/log.service';
 import { UrlService } from './../../shared/url/url.service';
 import { SessionService } from './../../shared/session/session.service';
 import { BackendResponse } from './../shared/backend.response';
@@ -20,6 +21,7 @@ export class AuthenticationService {
     constructor(
         private http: Http,
         private urlService: UrlService,
+        private log: LogService,
         private sessionService: SessionService
     ) { }
 
@@ -27,7 +29,7 @@ export class AuthenticationService {
         let url: string = this.urlService.build(this.url.authenticate);
         return this.http.post(url, request)
             .map(response => response.json())
-            .do(response => console.log(`AuthenticationService - ${url} - response: `, response))
+            .do(response => this.log.info(`AuthenticationService - ${url} - response: `, response))
             .do(response => this.sessionService.handle(request, response));
     }
 

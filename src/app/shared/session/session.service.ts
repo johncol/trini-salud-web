@@ -5,14 +5,20 @@ import { SessionData } from './session-data';
 import { AuthenticationRequest } from './../../backend/authentication/authentication.request';
 import { AuthenticationResponse } from './../../backend/authentication/authentication.response';
 
+import { LogService } from './../log/log.service';
+
 @Injectable()
 export class SessionService {
     private sessionData: SessionData = null;
 
+    constructor(
+        private log: LogService
+    ) { }
+
     handle(request: AuthenticationRequest, response: BackendResponse<AuthenticationResponse>): void {
         if (response.success) {
             this.sessionData = new SessionData(request.username, request.password, response.data.role, response.data.token);
-            console.log('SessionData saved: ', this.sessionData);
+            this.log.info('SessionData saved: ', this.sessionData);
         } else {
             this.clean();
         }

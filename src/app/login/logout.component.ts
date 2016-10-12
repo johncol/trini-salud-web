@@ -16,5 +16,5 @@ export class LogoutComponent implements OnInit {
         console.log('TODO: really logout');
         this.routingService.toLogin();
     }
-    
+
 }

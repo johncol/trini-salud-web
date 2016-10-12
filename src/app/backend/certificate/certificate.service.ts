@@ -6,6 +6,7 @@ import 'rxjs/add/operator/do';
 
 import { AuthenticationService } from './../authentication/authentication.service';
 import { BackendResponse } from './../shared/backend.response';
+import { LogService } from './../../shared/log/log.service';
 import { UrlService } from './../../shared/url/url.service';
 import { RoleService } from './../../shared/authorization/role.service';
 import { SessionService } from './../../shared/session/session.service';
@@ -27,6 +28,7 @@ export class CertificateService {
 
     constructor(
         private http: Http,
+        private log: LogService,
         private urlService: UrlService,
         private roleService: RoleService,
         private sessionService: SessionService,
@@ -37,16 +39,16 @@ export class CertificateService {
         let url: string = this.urlService.build(this.url.upload);
         return this.http.post(url, request, { headers: this.authenticationService.getAuthenticationHeaders() })
             .map(response => response.json())
-            .do(response => console.log(`CertificateService - ${url} - response: `, response));
+            .do(response => this.log.info(`CertificateService - ${url} - response: `, response));
     }
 
     get(identification: string): Observable<BackendResponse<SearchCertificateResponse>> {
-        let url: string = this.roleService.isIpsWorker() ? 
+        let url: string = this.roleService.isIpsWorker() ?
             this.urlService.build(this.url.get) + identification:
             this.urlService.build(this.url.getForCustomer) + this.sessionService.username() + '&patient=' + identification;
         return this.http.get(url, { headers: this.authenticationService.getAuthenticationHeaders() })
             .map(response => response.json())
-            .do(response => console.log(`CertificateService - ${url} - response: `, response));
+            .do(response => this.log.info(`CertificateService - ${url} - response: `, response));
     }
 
 }

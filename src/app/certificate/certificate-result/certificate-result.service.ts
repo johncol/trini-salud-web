@@ -6,22 +6,25 @@ import { CertificateResult } from './certificate-result';
 
 import { SearchCertificateResponse } from './../../backend/certificate/search-certificate/search-certificate.response';
 import { Patient } from './../../backend/certificate/search-certificate/patient';
+import { LogService } from './../../shared/log/log.service';
 
 @Injectable()
 export class CertificateResultService {
     result: CertificateResult = null;
 
-    constructor() { }
+    constructor(
+        private log: LogService
+    ) { }
 
     save(response: SearchCertificateResponse): void {
         let patient: PatientInformation = this.mapPatientData(response);
         let certificates: Certificate[] = this.mapCertificates(response);
-        this.result = new CertificateResult(patient, certificates); 
+        this.result = new CertificateResult(patient, certificates);
     }
 
     get(): CertificateResult {
         if (this.result === null) {
-            console.warn('There is no patient data');
+            this.log.error('There is no patient data');
         }
         return this.result;
     }

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { LoginData } from './login-data';
 import { LoginService } from './login.service';
+import { LogService } from './../../shared/log/log.service';
 import { LoginStatus } from './login-status.enum';
 
 @Component({
@@ -16,6 +17,7 @@ export class LoginFormComponent implements OnInit {
     loginForm: FormGroup;
 
     constructor(
+        private log: LogService,
         private formBuilder: FormBuilder,
         private loginService: LoginService,
         private elementRef: ElementRef
@@ -58,7 +60,7 @@ export class LoginFormComponent implements OnInit {
     }
 
     private handleErrorResponse(error: any): void {
-        console.error('Fatal authentication error: ', error);
+        this.log.error('Fatal authentication error: ', error);
         this.onMakingRequest.emit(false);
         this.onResult.emit(LoginStatus.SERVER_ERROR);
     }

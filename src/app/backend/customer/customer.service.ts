@@ -7,6 +7,7 @@ import 'rxjs/add/operator/do';
 import { AuthenticationService } from './../authentication/authentication.service';
 import { BackendResponse } from './../shared/backend.response';
 import { UrlService } from './../../shared/url/url.service';
+import { LogService } from './../../shared/log/log.service';
 
 import { CreateCustomerRequest } from './create-customer.request';
 import { CreateCustomerResponse } from './create-customer.response';
@@ -21,6 +22,7 @@ export class CustomerService {
 
     constructor(
         private http: Http,
+        private log: LogService,
         private urlService: UrlService,
         private authenticationService: AuthenticationService
     ) { }
@@ -29,14 +31,14 @@ export class CustomerService {
         let url: string = this.urlService.build(this.url.create);
         return this.http.post(url, request, { headers: this.authenticationService.getAuthenticationHeaders() })
             .map(response => response.json())
-            .do(response => console.log(`CustomerService - ${url} - response: `, response));
+            .do(response => this.log.info(`CustomerService - ${url} - response: `, response));
     }
 
     list(): Observable<BackendResponse<CustomerResponse[]>> {
         let url: string = this.urlService.build(this.url.list);
         return this.http.get(url, { headers: this.authenticationService.getAuthenticationHeaders() })
             .map(response => response.json())
-            .do(response => console.log(`CustomerService - ${url} - response: `, response));
+            .do(response => this.log.info(`CustomerService - ${url} - response: `, response));
     }
 
 }

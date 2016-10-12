@@ -3,12 +3,14 @@ import { Router } from '@angular/router';
 
 import { SessionService } from './../session/session.service';
 import { RoleService } from './../authorization/role.service';
+import { LogService } from './../log/log.service';
 
 @Injectable()
 export class RoutingService {
 
     constructor(
         private router: Router,
+        private log: LogService,
         private roleService: RoleService,
         private sessionService: SessionService
     ) { }
@@ -51,7 +53,7 @@ export class RoutingService {
 
     afterLogin(): void {
         if (!this.sessionService.sessionActive()) {
-            console.warn('No destination after login if there is no session');
+            this.log.warn('No destination after login if there is no session');
             return;
         } else if (this.roleService.isCustomer()) {
             this.toSearchCertificate();
