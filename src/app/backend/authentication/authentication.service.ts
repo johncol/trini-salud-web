@@ -25,7 +25,6 @@ export class AuthenticationService {
 
     authenticate(request: AuthenticationRequest): Observable<BackendResponse<AuthenticationResponse>> {
         let url: string = this.urlService.build(this.url.authenticate);
-        // return this.dummyResponse(request)
         return this.http.post(url, request)
             .map(response => response.json())
             .do(response => console.log(`AuthenticationService - ${url} - response: `, response))
@@ -36,23 +35,6 @@ export class AuthenticationService {
         let headers: Headers = new Headers();
         headers.append("Authorization", "Basic " + btoa(this.sessionService.username() + ":" + this.sessionService.password()));
         return headers;
-    }
-
-    private dummyResponse(request: AuthenticationRequest): Observable<any> {
-        return Observable.create(observer => {
-            console.info('AuthenticationService.authenticate() dummy response being used');
-            let authResponse: AuthenticationResponse;
-            if (request.username === 'admin') {
-                authResponse = new AuthenticationResponse(true, 'IPS_WORKER', 'KJH237485JKGJD');
-            } else if (request.username === 'noadmin') {
-                authResponse = new AuthenticationResponse(true, 'CUSTOMER', 'KJH237485JKGJD');
-            } else {
-                authResponse = new AuthenticationResponse(false);
-            }
-            observer.next({
-                json: () => new BackendResponse<AuthenticationResponse>(authResponse.authenticated, authResponse.authenticated ? 'success' : 'failed', authResponse)
-            });
-        });
     }
 
 }
