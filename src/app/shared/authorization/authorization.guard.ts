@@ -13,13 +13,13 @@ export class AuthorizationGuard implements CanActivate {
     ) { }
 
     canActivate(destination: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        console.warn('Authorization guard temporary disabled');
-        return true;
-        // let url: string = destination.url.join("/");
-        // let canAccess: boolean = this.authorizationService.canAccess(url);
-        // if (!canAccess) {
-        //     this.routingService.toLogout();
-        // }
-        // return canAccess;
+        // console.warn('Authorization guard temporary disabled');
+        // return true;
+        let url: string = destination.url.join("/");
+        let canAccess: boolean = this.authorizationService.canAccess(url);
+        if (!canAccess) {
+            this.routingService.toLogout();
+        }
+        return canAccess;
     }
 }
