@@ -7,6 +7,8 @@ import 'rxjs/add/operator/do';
 import { AuthenticationService } from './../authentication/authentication.service';
 import { BackendResponse } from './../shared/backend.response';
 import { UrlService } from './../../shared/url/url.service';
+import { RoleService } from './../../shared/authorization/role.service';
+import { SessionService } from './../../shared/session/session.service';
 
 import { UploadCertificateRequest } from './upload-certificate/upload-certificate.request';
 import { UploadCertificateResponse } from './upload-certificate/upload-certificate.response';
@@ -20,11 +22,14 @@ export class CertificateService {
     private url: any = {
         upload: 'certificate',
         get: 'certificate?patient=',
+        getForCustomer: 'certificate/customer?id=',
     };
 
     constructor(
         private http: Http,
         private urlService: UrlService,
+        private roleService: RoleService,
+        private sessionService: SessionService,
         private authenticationService: AuthenticationService
     ) { }
 
@@ -37,7 +42,9 @@ export class CertificateService {
     }
 
     get(identification: string): Observable<BackendResponse<SearchCertificateResponse>> {
-        let url: string = this.urlService.build(this.url.get) + identification;
+        let url: string = this.roleService.isIpsWorker() ? 
+            this.urlService.build(this.url.get) + identification:
+            this.urlService.build(this.url.getForCustomer) + this.sessionService.username() + '&patient=' + identification;
         return this.http.get(url, { headers: this.authenticationService.getAuthenticationHeaders() })
         // return this.getDummyResponse(identification)
             .map(response => response.json())
