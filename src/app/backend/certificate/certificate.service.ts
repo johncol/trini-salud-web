@@ -4,9 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
-import { UrlService } from './../../shared/url/url.service';
-import { SessionService } from './../../shared/session/session.service';
+import { AuthenticationService } from './../authentication/authentication.service';
 import { BackendResponse } from './../shared/backend.response';
+import { UrlService } from './../../shared/url/url.service';
 
 import { UploadCertificateRequest } from './upload-certificate/upload-certificate.request';
 import { UploadCertificateResponse } from './upload-certificate/upload-certificate.response';
@@ -25,20 +25,20 @@ export class CertificateService {
     constructor(
         private http: Http,
         private urlService: UrlService,
-        private sessionService: SessionService
+        private authenticationService: AuthenticationService
     ) { }
 
     upload(request: UploadCertificateRequest): Observable<BackendResponse<UploadCertificateResponse>> {
         let url: string = this.urlService.build(this.url.upload);
         // return this.uploadDummyResponse(request)
-        return this.http.post(url, request)
+        return this.http.post(url, request, { headers: this.authenticationService.getAuthenticationHeaders() })
             .map(response => response.json())
             .do(response => console.log(`CertificateService - ${url} - response: `, response));
     }
 
     get(identification: string): Observable<BackendResponse<SearchCertificateResponse>> {
         let url: string = this.urlService.build(this.url.get) + identification;
-        return this.http.get(url)
+        return this.http.get(url, { headers: this.authenticationService.getAuthenticationHeaders() })
         // return this.getDummyResponse(identification)
             .map(response => response.json())
             .do(response => console.log(`CertificateService - ${url} - response: `, response));

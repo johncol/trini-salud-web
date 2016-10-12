@@ -59,6 +59,7 @@ export class LoginFormComponent implements OnInit {
 
     private handleErrorResponse(error: any): void {
         console.error('Fatal authentication error: ', error);
+        this.onMakingRequest.emit(false);
         this.onResult.emit(LoginStatus.SERVER_ERROR);
     }
 

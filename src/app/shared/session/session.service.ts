@@ -11,7 +11,7 @@ export class SessionService {
 
     handle(request: AuthenticationRequest, response: BackendResponse<AuthenticationResponse>): void {
         if (response.success) {
-            this.sessionData = new SessionData(request.username, response.data.role, response.data.token);
+            this.sessionData = new SessionData(request.username, request.password, response.data.role, response.data.token);
             console.log('SessionData saved: ', this.sessionData);
         } else {
             this.clean();
@@ -28,6 +28,10 @@ export class SessionService {
 
     username(): string {
         return this.sessionData.username;
+    }
+
+    password(): string {
+        return this.sessionData.password;
     }
 
     role(): string {

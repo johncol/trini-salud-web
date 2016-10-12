@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
-import { UrlService } from './../../shared/url/url.service';
-import { SessionService } from './../../shared/session/session.service';
+import { AuthenticationService } from './../authentication/authentication.service';
 import { BackendResponse } from './../shared/backend.response';
+import { UrlService } from './../../shared/url/url.service';
 
 import { CreateCustomerRequest } from './create-customer.request';
 import { CreateCustomerResponse } from './create-customer.response';
@@ -22,13 +22,13 @@ export class CustomerService {
     constructor(
         private http: Http,
         private urlService: UrlService,
-        private sessionService: SessionService
+        private authenticationService: AuthenticationService
     ) { }
 
     save(request: CreateCustomerRequest): Observable<BackendResponse<CreateCustomerResponse>> {
         let url: string = this.urlService.build(this.url.create);
-        // return this.saveDummyResponse(request)
-        return this.http.post(url, request)
+        // return this.saveDummyResponse(request) 
+        return this.http.post(url, request, { headers: this.authenticationService.getAuthenticationHeaders() })
             .map(response => response.json())
             .do(response => console.log(`CustomerService - ${url} - response: `, response));
     }
@@ -46,7 +46,7 @@ export class CustomerService {
     list(): Observable<BackendResponse<CustomerResponse[]>> {
         let url: string = this.urlService.build(this.url.list);
         // return this.listDummyResponse()
-        return this.http.get(url)
+        return this.http.get(url, { headers: this.authenticationService.getAuthenticationHeaders() })
             .map(response => response.json())
             .do(response => console.log(`CustomerService - ${url} - response: `, response));
     }

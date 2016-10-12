@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -30,6 +30,12 @@ export class AuthenticationService {
             .map(response => response.json())
             .do(response => console.log(`AuthenticationService - ${url} - response: `, response))
             .do(response => this.sessionService.handle(request, response));
+    }
+
+    getAuthenticationHeaders(): Headers {
+        let headers: Headers = new Headers();
+        headers.append("Authorization", "Basic " + btoa(this.sessionService.username() + ":" + this.sessionService.password()));
+        return headers;
     }
 
     private dummyResponse(request: AuthenticationRequest): Observable<any> {
