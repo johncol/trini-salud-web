@@ -2,7 +2,6 @@
     margin: 0 auto;
     width: 80px;
     text-align: center;
-    padding-top: 300px;
     cursor: default;
 }
 
@@ -50,6 +49,21 @@
         -webkit-transform: scale(1);
         transform: scale(1);
     }
+}
+
+.loading-component {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 10000;
+    background: rgba(50,50,50,0.4);
+    height: 100%;
+}
+
+.loading-all-inside {
+    padding-top: 300px;
 }
 
 .loading-message {

@@ -12,4 +12,10 @@ export class LoadingComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { }
+
+    windowHeight(): number {
+        return window.innerHeight;
+    }
+
+
 }
