@@ -218,11 +218,14 @@ body {
 
 .loading-component {
     position: absolute;
-    top: 30%;
+    top: 0;
     left: 0;
     width: 100%;
     text-align: center;
     z-index: 10000;
+    background: rgba(50,50,50,0.4);
+    /* padding-top: 100px; */
+    /* padding-bottom: 100px; */
+    height: 100%;
 }
-
 
