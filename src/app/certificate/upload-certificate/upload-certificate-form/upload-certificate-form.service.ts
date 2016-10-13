@@ -32,12 +32,7 @@ export class UploadCertificateFormService {
             patientAlreadyRegistered: [false],
             identification: ['', Validators.required],
             name: ['', Validators.required],
-            birthdate: ['', Validators.required],
             gender: ['', Validators.required],
-            eps: ['', Validators.required],
-            address: ['', Validators.required],
-            email: ['', Validators.required],
-            phone: ['', Validators.required],
             customer: ['', Validators.required],
             certificateName: ['', Validators.required],
             certificateFile: ['', fileValidators.required.bind(fileValidators)]
@@ -163,12 +158,7 @@ export class UploadCertificateFormService {
         return new PatientData(
             this.fieldValue('identification'),
             this.fieldValue('name'),
-            this.fieldValue('birthdate'),
-            this.fieldValue('gender'),
-            this.fieldValue('eps'),
-            this.fieldValue('address'),
-            this.fieldValue('email'),
-            this.fieldValue('phone')
+            this.fieldValue('gender')
         );
     }
 

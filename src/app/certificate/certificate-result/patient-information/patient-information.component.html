@@ -4,36 +4,11 @@
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
             {{patient.name}}
         </h1>
-        <h2 class="patient-information-identification">{{patient.identification}}</h2>
+        <h2 class="patient-information-identification">Identificación {{patient.identification}}</h2>
         <section class="patient-information-section">
-            <h3 class="patient-information-section-title">Información personal</h3>
+            <h3 class="patient-information-section-title">Otros datos</h3>
             <ul>
-                <li>{{patient.getGender()}}</li>
-                <li>{{patient.age}} años</li>
-                <li>Nacio el {{patient.birthdate}}</li>
-            </ul>
-        </section>
-        <section class="patient-information-section">
-            <h3 class="patient-information-section-title">Información de contacto</h3>
-            <ul>
-                <li>
-                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                    {{patient.address}}
-                </li>
-                <li>
-                    <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
-                    {{patient.phone}}
-                </li>
-                <li>
-                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                    <span class="patient-email">{{patient.email}}</span>
-                </li>
-            </ul>
-        </section>
-        <section class="patient-information-section">
-            <h3 class="patient-information-section-title">Otros</h3>
-            <ul>
-                <li><span class="patient-field">EPS:</span> {{patient.eps}}</li>
+                <li><span class="patient-field">Sexo:</span> {{patient.getGender()}}</li>
                 <li><span class="patient-field">Empleador:</span> {{patient.customer}}</li>
             </ul>
         </section>

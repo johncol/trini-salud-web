@@ -35,12 +35,6 @@ export class CertificateResultService {
             patient.identification,
             patient.name,
             patient.gender,
-            patient.age,
-            patient.birthdate,
-            patient.address,
-            patient.phone,
-            patient.email,
-            patient.eps,
             patient.customerId
         );
     }
