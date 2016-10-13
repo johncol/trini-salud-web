@@ -58,7 +58,7 @@
     width: 100%;
     text-align: center;
     z-index: 10000;
-    background: rgba(50,50,50,0.4);
+    background: transparent;
     height: 100%;
 }
 
