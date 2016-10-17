@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { RoutingService } from './../shared/routing/routing.service';
+import { SessionService } from './../shared/session/session.service';
 
 @Component({
     selector: 'ts-logout',
@@ -9,11 +10,12 @@ import { RoutingService } from './../shared/routing/routing.service';
 export class LogoutComponent implements OnInit {
 
     constructor(
-        private routingService: RoutingService
+        private routingService: RoutingService,
+        private sessionService: SessionService
     ) { }
 
     ngOnInit(): void {
-        console.log('TODO: really logout');
+        this.sessionService.clean();
         this.routingService.toLogin();
     }
 
