@@ -5,7 +5,7 @@ var app = express();
 app.use(gzippo.staticGzip("" + __dirname + "/dist"));
 
 app.use(function (req, res, next) {
-    res.status(404).redirect('/index.html');
+    res.status(404).redirect('/');
 });
 
 app.listen(process.env.PORT || 5000);
