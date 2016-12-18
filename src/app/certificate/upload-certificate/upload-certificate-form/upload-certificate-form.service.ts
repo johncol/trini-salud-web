@@ -53,9 +53,11 @@ export class UploadCertificateFormService {
             let customerOptions: any[] = [];
             this.customerService.list().subscribe(response => {
                 if (response.success) {
-                    response.data.forEach(customer =>
-                        customerOptions.push({ id: customer.identification, label: `${customer.identification} - ${customer.name}` })
-                    );
+                    response.data
+                        .sort((c1, c2) => c1.name < c2.name ? -1 : 1)
+                        .forEach(customer =>
+                            customerOptions.push({ id: customer.identification, label: `${customer.name} (${customer.identification})` })
+                        );
                 }
             });
             subscriber.next(customerOptions);
