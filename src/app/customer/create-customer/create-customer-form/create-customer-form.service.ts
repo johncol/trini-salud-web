@@ -23,8 +23,6 @@ export class CreateCustomerFormService {
         this.form = this.formBuilder.group({
             identification: ['', Validators.required],
             name: ['', Validators.required],
-            email: ['', Validators.required],
-            phone: ['', Validators.required],
             password: ['', Validators.required]
         });
         return this.form;

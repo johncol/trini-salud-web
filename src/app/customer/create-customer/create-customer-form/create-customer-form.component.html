@@ -14,14 +14,6 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-6">
-                <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email" (keydown.enter)="focus('phone', $event)">
-            </div>
-            <div class="col-sm-6">
-                <input type="phone" class="form-control" id="phone" formControlName="phone" placeholder="Teléfono" (keydown.enter)="focus('password', $event)">
-            </div>
-        </div>
-        <div class="form-group row">
             <div class="col-sm-6 input-container-with-glyphicon">
                 <input [type]="state.showPassword ? 'text' : 'password'" class="form-control" id="password" formControlName="password" placeholder="Contraseña">
                 <ts-show-password-glyphicon (show)="state.showPassword = $event"></ts-show-password-glyphicon>
