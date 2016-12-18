@@ -33,9 +33,7 @@ export class CertificateResultService {
         let patient: Patient = response.patient;
         return new PatientInformation(
             patient.identification,
-            patient.name,
-            patient.gender,
-            patient.customerId
+            patient.name
         );
     }
 
