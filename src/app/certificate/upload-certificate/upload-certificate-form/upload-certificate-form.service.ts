@@ -29,10 +29,8 @@ export class UploadCertificateFormService {
     initFormControls(elementRef: ElementRef): FormGroup {
         let fileValidators: FileValidators = new FileValidators(elementRef, 'certificateFile');
         this.form = this.formBuilder.group({
-            patientAlreadyRegistered: [false],
             identification: ['', Validators.required],
             name: ['', Validators.required],
-            gender: ['', Validators.required],
             customer: ['', Validators.required],
             certificateName: ['', Validators.required],
             certificateFile: ['', fileValidators.required.bind(fileValidators)]
@@ -55,9 +53,11 @@ export class UploadCertificateFormService {
             let customerOptions: any[] = [];
             this.customerService.list().subscribe(response => {
                 if (response.success) {
-                    response.data.forEach(customer =>
-                        customerOptions.push({ id: customer.identification, label: `${customer.identification} - ${customer.name}` })
-                    );
+                    response.data
+                        .sort((c1, c2) => c1.name < c2.name ? -1 : 1)
+                        .forEach(customer =>
+                            customerOptions.push({ id: customer.identification, label: `${customer.name} (${customer.identification})` })
+                        );
                 }
             });
             subscriber.next(customerOptions);
@@ -88,14 +88,11 @@ export class UploadCertificateFormService {
     }
 
     private isValid(): boolean {
-        let unregisteredPatient: boolean = !this.fieldValue('patientAlreadyRegistered');
-        if (unregisteredPatient) {
-            return this.form.valid;
-        }
         let validId: boolean = this.validField('identification');
+        let validName: boolean = this.validField('name');
         let validCertificateName: boolean = this.validField('certificateName');
         let validCertificateFile: boolean = this.validField('certificateFile');
-        return validId && validCertificateName && validCertificateFile;
+        return validId && validName && validCertificateName && validCertificateFile;
     }
 
     private handleFormSubmit(elementRef: ElementRef): Observable<BackendResponse<UploadCertificateResponse>> {
@@ -148,18 +145,11 @@ export class UploadCertificateFormService {
             this.fieldValue('certificateName'),
             file
         );
-        let patient: PatientData = this.fieldValue('patientAlreadyRegistered') ?
-            new PatientData(this.fieldValue('identification')) :
-            this.buildFullPatientData();
-        return new UploadCertificateRequest(patient, certificate, this.fieldValue('customer'));
-    }
-
-    private buildFullPatientData(): PatientData {
-        return new PatientData(
+        let patient: PatientData = new PatientData(
             this.fieldValue('identification'),
-            this.fieldValue('name'),
-            this.fieldValue('gender')
+            this.fieldValue('name')
         );
+        return new UploadCertificateRequest(patient, certificate, this.fieldValue('customer'));
     }
 
     private fieldValue(field: string): any {

@@ -3,32 +3,16 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off" novalidate [class.highlight-errors]="state.highlightErrors">
         <div class="form-group row">
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="identification" formControlName="identification" placeholder="Identificacion" (keydown.enter)="focus(form.controls.patientAlreadyRegistered.value ? 'certificateName' : 'name', $event)">
+                <input type="text" class="form-control" id="identification" formControlName="identification" placeholder="Identificacion" (keydown.enter)="focus('name', $event)">
             </div>
             <div class="col-sm-6">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" formControlName="patientAlreadyRegistered"> Los datos de este paciente ya fueron registrados anteriormente
-                    </label>
-                </div>
+                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nombre completo" (keydown.enter)="focus('customer', $event)">
             </div>
-            <div [hidden]="form.controls.patientAlreadyRegistered.value">
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nombre completo" (keydown.enter)="focus('gender', $event)">
-                </div>
-                <div class="col-sm-6">
-                    <select class="form-control" id="gender" formControlName="gender" (keydown.enter)="focus('customer', $event)">
-                        <option selected value="">Selecciona sexo</option>
-                        <option value="f">Mujer</option>
-                        <option value="m">Hombre</option>
-                    </select>
-                </div>
-                <div class="col-sm-12">
-                    <select class="form-control" id="customer" formControlName="customer" (keydown.enter)="focus('certificateName', $event)">
-                        <option selected value="">Selecciona el empleador del paciente</option>
-                        <option *ngFor="let customer of customerOptions" [value]="customer.id">{{customer.label}}</option>
-                    </select>
-                </div>
+            <div class="col-sm-12">
+                <select class="form-control" id="customer" formControlName="customer" (keydown.enter)="focus('certificateName', $event)">
+                    <option selected value="">Selecciona el empleador del paciente</option>
+                    <option *ngFor="let customer of customerOptions" [value]="customer.id">{{customer.label}}</option>
+                </select>
             </div>
             <div class="col-sm-12">
                 <input type="text" class="form-control" id="certificateName" formControlName="certificateName" placeholder="Descripción del certificado" (keydown.enter)="focus('certificateFile', $event)">
