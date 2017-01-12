@@ -40,7 +40,7 @@ export class CertificateResultService {
     private mapCertificates(response: SearchCertificateResponse): Certificate[] {
         let certificates: Certificate[] = [];
         response.certificates.forEach(certificate => {
-            certificates.push(new Certificate(certificate.certificateId, certificate.name));
+            certificates.push(new Certificate(certificate.certificateId, certificate.name, certificate.date));
         });
         return certificates;
     }

@@ -1,5 +1,5 @@
-
-html, body {
+html,
+body {
     min-height: 100%;
 }
 
@@ -66,15 +66,14 @@ body {
     font-family: 'PFHandbookPro-Regular', Segoe, "Segoe UI", Optima, Arial, sans-serif;
 }
 
-.panel-login-heading-subtitle {
-
-}
+.panel-login-heading-subtitle {}
 
 .panel-footer {
     border-top: 0;
     padding-top: 25px;
     padding-bottom: 25px;
 }
+
 
 /* login */
 
@@ -91,16 +90,20 @@ body {
 }
 
 @media (max-width: 500px) {
-    .btn-forgot-password, .btn-login {
+    .btn-forgot-password,
+    .btn-login {
         width: 100%;
     }
 }
 
+
 /* create customer */
+
 
 /* form notes */
 
-.form-notes, .form-notes p {
+.form-notes,
+.form-notes p {
     font-size: 100%;
     line-height: 120%;
     word-spacing: 1px;
@@ -110,13 +113,12 @@ body {
     font-size: 150%;
 }
 
+
 /* patient information */
 
 .patient-information {
-    border: 1px solid #cccccc;
-    background: #ffffff;
-    margin: 20px 30px;
-    padding: 20px 45px;
+    margin: 0;
+    padding: 5px;
 }
 
 .patient-information-name {
@@ -155,12 +157,6 @@ body {
 }
 
 @media (max-width: 500px) {
-    .patient-information {
-        border: none;
-        background: #ffffff;
-        margin: 0;
-        padding: 5px;
-    }
     .patient-information-name {
         font-size: 150%;
     }
@@ -169,8 +165,6 @@ body {
     }
     .patient-information-section-title {
         font-size: 90%;
-        text-transform: uppercase;
-        font-weight: bold;
     }
 }
 
